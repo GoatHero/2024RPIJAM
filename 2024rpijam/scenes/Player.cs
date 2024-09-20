@@ -14,8 +14,8 @@ public partial class Player : CharacterBody2D
 		// Add the gravity.
 		if (!IsOnFloor())
 		{
-			if (Input.IsActionJustPressed("fall"))
-				velocity += GetGravity() * (float)delta * fallMulti * 0.5f;
+			if (Input.IsActionPressed("fall"))
+				velocity += GetGravity() * (float)delta * fallMulti * 5f;
 			velocity += GetGravity() * (float)delta * fallMulti;
 			
 		}
