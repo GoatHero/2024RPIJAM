@@ -12,9 +12,17 @@ config_version=5
 
 config/name="2024RPIJam"
 run/main_scene="res://scenes/root.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://sprites/icon.svg"
 
 [dotnet]
 
 project/assembly_name="2024RPIJam"
+
+[layer_names]
+
+2d_physics/layer_1="level"
+2d_physics/layer_2="player"
+2d_physics/layer_3="player hitbox"
+2d_physics/layer_4="enemy"
+2d_physics/layer_5="enemy hitbox"
