@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjtgjya1uxanx"]
 
-[ext_resource type="Texture2D" uid="uid://cqb1pb8ljjdrb" path="res://sprites/HealthBar.png" id="1_m4cfk"]
-[ext_resource type="Script" path="res://scripts/enemy/HealthBar.cs" id="2_can7u"]
+[ext_resource type="Texture2D" uid="uid://cqb1pb8ljjdrb" path="res://sprites/healthbar.png" id="1_m4cfk"]
+[ext_resource type="Script" path="res://scripts/UI/HealthBar.cs" id="2_can7u"]
 
 [node name="HealthBar" type="Sprite2D"]
 scale = Vector2(10, 10)

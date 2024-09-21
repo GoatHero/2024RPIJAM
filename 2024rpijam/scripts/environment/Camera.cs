@@ -20,9 +20,24 @@ public partial class Camera : Sprite2D
 		float dt = (float)delta;
 
 		float limit = maxRotationDegrees/180.0f*(float)Math.PI;
-		float atPlayer = (GlobalPosition - player.GlobalPosition).Angle();
+		float atPlayer = (GlobalPosition - player.GlobalPosition).Angle()-GlobalRotation;
+		if (GlobalScale.X * GlobalScale.Y > 0)
+			atPlayer += Rotation;
+		else
+			atPlayer -= Rotation;
+
+		while (atPlayer > Math.PI) {
+			atPlayer -= (float)Math.PI*2f;
+		}
+		while (atPlayer < -Math.PI) {
+			atPlayer += (float)Math.PI*2f;
+		}
+
 		if (Math.Abs(atPlayer) <= limit) {
-			Rotation += dt * (atPlayer - Rotation) * 8f;
+			if (GlobalScale.X * GlobalScale.Y > 0)
+				Rotation += dt * (atPlayer - Rotation) * 8f;
+			else
+				Rotation += dt * (atPlayer + Rotation) * -8f;
 		} else {
 			Rotation -= dt * Rotation * 3f;
 		}

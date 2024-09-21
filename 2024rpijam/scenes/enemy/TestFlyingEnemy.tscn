@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/enemy/TestFlyingEnemy.cs" id="1_e5r3t"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_bsyy6"]
-[ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/HealthBar.tscn" id="3_s4pjl"]
+[ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/UI/HealthBar.tscn" id="3_s4pjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
 radius = 68.0661
