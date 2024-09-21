@@ -24,6 +24,8 @@ public partial class TestFlyingEnemey : BaseFlyingEnemey
 	}
 
 	public virtual void attack(Player player) {
-		// player.damage(attackDamage, attackKnockback); // add damage to player
+		Vector2 dif = player.Position - Position;
+		dif /= dif.Length();
+		player.damage(attackDamage, dif*attackKnockback);
 	}
 }
