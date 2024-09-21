@@ -10,6 +10,14 @@
 z_index = 50
 collision_layer = 6
 script = ExtResource("1_mtpqr")
+fallMulti = null
+speed = null
+airSpeed = null
+jumpVelocity = null
+wallJumpVelocity = null
+airPoundMulti = null
+health = null
+maxHealth = null
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(9.53674e-07, 0)
@@ -39,3 +47,4 @@ grow_vertical = 2
 [node name="HealthNumber" parent="Camera2D/Control" node_paths=PackedStringArray("player") instance=ExtResource("3_8ndyp")]
 layout_mode = 0
 player = NodePath("../../..")
+beforeText = null
