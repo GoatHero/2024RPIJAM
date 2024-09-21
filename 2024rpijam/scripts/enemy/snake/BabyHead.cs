@@ -12,29 +12,28 @@ public partial class BabyHead : RigidBody2D
 	private PackedScene linkPackedScene;
 
 
-	public override void _Ready()
-	{
+	public override void _Ready() {
 		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBabyLink.tscn");
 		segments.Add(this);
-		int i = 0;
-		while (size < segments.Count && i < 10) {
+		CallDeferred("makeSegments");
+	}
+
+	public void makeSegments() {
+		while (size > segments.Count) {
 			addToSegment(segments.Last(), linkPackedScene);
-			i ++;
 		}
 	}
 
 	public void addToSegment(RigidBody2D segment, PackedScene newSegmentPackedScene) {
-		
-		Joint2D back = segment.GetNode<Joint2D>("back");
-		RigidBody2D newSegment = newSegmentPackedScene.Instantiate() as RigidBody2D;
-		
-		GetTree().Root.GetNode("root").AddChild(newSegment);
-		Node2D front = newSegment.GetNode<Node2D>("front");
-		
-		newSegment.GlobalPosition += back.GlobalPosition - front.GlobalPosition;
-		GD.Print("adding", newSegment.GlobalPosition);
+		RigidBody2D newSegment = newSegmentPackedScene.Instantiate<RigidBody2D>();
 		segments.Add(newSegment);
-		GD.Print(segments);
-		 back.NodeB = newSegment.GetPath();
+		
+		segment.AddSibling(newSegment);
+
+		Node2D front = newSegment.GetNode<Node2D>("front");
+		PinJoint2D back = segment.GetNode<PinJoint2D>("back");
+		newSegment.GlobalPosition += back.GlobalPosition - front.GlobalPosition;
+		
+		back.NodeB = newSegment.GetPath();
 	}
 }

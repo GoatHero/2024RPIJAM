@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bigo0ycn36e4o" path="res://scenes/UI/HealthNumber.tscn" id="3_8ndyp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d72cy"]
+height = 28.0
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
@@ -23,6 +24,7 @@ maxHealth = null
 position = Vector2(9.53674e-07, 0)
 scale = Vector2(3, 3)
 texture = ExtResource("2_iqj2m")
+hframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 4)
