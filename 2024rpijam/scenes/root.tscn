@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dickv3jkmhyf"]
 
-[ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="1_5qepa"]
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_5qepa"]
 [ext_resource type="PackedScene" uid="uid://b8qbjvn85fsew" path="res://scenes/enemy/TestGhostEnemey.tscn" id="3_2mp0h"]
-[ext_resource type="PackedScene" path="res://scenes/world.tscn" id="3_23j5b"]
+[ext_resource type="PackedScene" uid="uid://cpfh1lampiusc" path="res://scenes/world.tscn" id="3_23j5b"]
 [ext_resource type="PackedScene" uid="uid://5iufykhemqp1" path="res://scenes/enemy/TestFlyingEnemey.tscn" id="3_kjc3e"]
 
 [node name="root" type="Node2D"]
