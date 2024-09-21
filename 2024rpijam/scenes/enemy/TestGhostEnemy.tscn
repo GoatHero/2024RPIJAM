@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgr7kjy36tnx6"]
+[gd_scene load_steps=5 format=3 uid="uid://dgr7kjy36tnx6"]
 
 [ext_resource type="Script" path="res://scripts/enemy/TestGhostEnemy.cs" id="1_0txap"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_tf21q"]
+[ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/HealthBar.tscn" id="3_iamw1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
 radius = 68.0661
@@ -19,5 +20,8 @@ texture = ExtResource("2_tf21q")
 shape = SubResource("CircleShape2D_djsg4")
 
 [node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="HealthBar" parent="." instance=ExtResource("3_iamw1")]
+position = Vector2(0, -90)
 
 [connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

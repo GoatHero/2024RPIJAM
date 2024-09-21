@@ -8,6 +8,8 @@ public partial class BaseEnemy : CharacterBody2D
 	public float speed = 100.0f;
 	[Export]
 	public float health = 10;
+	[Export]
+	public float maxHealth = 10;
 
 	protected bool canAttack = true;
 	protected Player player;

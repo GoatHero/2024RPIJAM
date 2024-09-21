@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cp5r8hh5oncoq" path="res://sprites/world/cam cam.png" id="1_om0bq"]
 [ext_resource type="Texture2D" uid="uid://bvkyvi5j7a5si" path="res://sprites/world/cam base.png" id="2_6ecoq"]
-[ext_resource type="Script" path="res://scripts/Camera.cs" id="2_381vv"]
+[ext_resource type="Script" path="res://scripts/environment/Camera.cs" id="2_381vv"]
 
 [node name="Camera" type="Node2D"]
 scale = Vector2(5, 5)

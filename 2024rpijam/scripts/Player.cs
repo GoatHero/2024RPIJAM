@@ -18,6 +18,8 @@ public partial class Player : CharacterBody2D
 
 	[Export]
 	public float health = 100;
+	[Export]
+	public float maxHealth = 100;
 	
 
 	public override void _PhysicsProcess(double delta)
