@@ -1,25 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dickv3jkmhyf"]
+[gd_scene load_steps=5 format=3 uid="uid://dickv3jkmhyf"]
 
-[ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="1_5qepa"]
-[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_es5bu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_75kaf"]
-size = Vector2(128.2, 127)
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_5qepa"]
+[ext_resource type="PackedScene" uid="uid://b8qbjvn85fsew" path="res://scenes/enemy/TestGhostEnemey.tscn" id="3_2mp0h"]
+[ext_resource type="PackedScene" uid="uid://cpfh1lampiusc" path="res://scenes/world.tscn" id="3_23j5b"]
+[ext_resource type="PackedScene" uid="uid://5iufykhemqp1" path="res://scenes/enemy/TestFlyingEnemey.tscn" id="3_kjc3e"]
 
 [node name="root" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5qepa")]
 position = Vector2(320, 97)
 
-[node name="Icon" type="StaticBody2D" parent="."]
-position = Vector2(250, 250)
-scale = Vector2(5, 1)
+[node name="Camera2D" type="Camera2D" parent="Player"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon"]
-position = Vector2(0.100002, -0.5)
-scale = Vector2(2, 1)
-shape = SubResource("RectangleShape2D_75kaf")
+[node name="World" parent="." instance=ExtResource("3_23j5b")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Icon"]
-scale = Vector2(2, 1)
-texture = ExtResource("2_es5bu")
+[node name="TestFlyingEnemey" parent="." instance=ExtResource("3_kjc3e")]
+position = Vector2(1163, -590)
+
+[node name="TestGhostEnemey" parent="." instance=ExtResource("3_2mp0h")]
+position = Vector2(-396, -356)
