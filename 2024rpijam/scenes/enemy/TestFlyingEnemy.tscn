@@ -1,12 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://5iufykhemqp1"]
+[gd_scene load_steps=4 format=3 uid="uid://brfdvm1putq1c"]
 
-[ext_resource type="Script" path="res://scripts/enemy/TestFlyingEnemey.cs" id="1_e5r3t"]
+[ext_resource type="Script" path="res://scripts/enemy/TestFlyingEnemy.cs" id="1_e5r3t"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_bsyy6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
 radius = 68.0661
 
-[node name="TestFlyingEnemey" type="CharacterBody2D"]
+[node name="TestFlyingEnemy" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 collision_layer = 24
 script = ExtResource("1_e5r3t")
@@ -16,3 +16,7 @@ texture = ExtResource("2_bsyy6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_djsg4")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_path_custom_color = Color(1, 0, 0, 1)

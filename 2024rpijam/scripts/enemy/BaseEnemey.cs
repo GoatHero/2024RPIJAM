@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class BaseEnemey : CharacterBody2D
+public partial class BaseEnemy : CharacterBody2D
 {
 	[Export]
 	public float speed = 40.0f;
@@ -18,7 +18,7 @@ public partial class BaseEnemey : CharacterBody2D
 	}
 
 	public virtual bool moveToPosition(Vector2 pos) {
-		Vector2 direction = pos - Position;
+		Vector2 direction = pos - GlobalPosition;
 		
 		if (direction != Vector2.Zero) {
 			Velocity += direction/direction.Length() * speed;

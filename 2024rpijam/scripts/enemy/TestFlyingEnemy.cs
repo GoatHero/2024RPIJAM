@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class TestGhostEnemey : BaseEnemey
+public partial class TestFlyingEnemy : BaseFlyingEnemy
 {
 	[Export]
 	public float attackDamage = 10;
@@ -16,15 +16,17 @@ public partial class TestGhostEnemey : BaseEnemey
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		moveToPosition(player.Position);
+		base._PhysicsProcess(delta);
 
-		if ((player.Position - Position).Length() < attackRange) {
+		moveToPosition(getPathToPos(player.GlobalPosition));
+
+		if ((player.GlobalPosition - GlobalPosition).Length() < attackRange) {
 			attack(player);
 		}
 	}
 
 	public virtual void attack(Player player) {
-		Vector2 dif = player.Position - Position;
+		Vector2 dif = player.GlobalPosition - GlobalPosition;
 		dif /= dif.Length();
 		player.damage(attackDamage, dif*attackKnockback);
 	}
