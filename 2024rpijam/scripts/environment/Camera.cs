@@ -32,7 +32,7 @@ public partial class Camera : Sprite2D
 		while (atPlayer < -Math.PI) {
 			atPlayer += (float)Math.PI*2f;
 		}
-
+		
 		if (Math.Abs(atPlayer) <= limit) {
 			if (GlobalScale.X * GlobalScale.Y > 0)
 				Rotation += dt * (atPlayer - Rotation) * 8f;
