@@ -8,9 +8,11 @@ height = 50.0
 
 [node name="BabySnakeLink" type="RigidBody2D"]
 collision_layer = 24
+gravity_scale = 0.0
+linear_damp = 10.0
 
 [node name="BabySnakeLink" type="Sprite2D" parent="."]
-position = Vector2(5, 0)
+position = Vector2(5, -2.38419e-07)
 scale = Vector2(5, 5)
 texture = ExtResource("1_wsvgv")
 

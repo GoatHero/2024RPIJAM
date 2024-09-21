@@ -11,24 +11,20 @@
 [node name="Player" parent="." instance=ExtResource("1_5qepa")]
 position = Vector2(239, 4)
 safe_margin = 0.15
+fallMulti = 1.5
+speed = 2700.0
+airSpeed = 800.0
+jumpVelocity = -500.0
+wallJumpVelocity = 400.0
+airPoundMulti = 3.0
+health = 100.0
+maxHealth = 100.0
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("3_kjc3e")]
 position = Vector2(1163, -590)
-attackDamage = null
-attackKnockback = null
-attackRange = null
-speed = null
-health = null
-maxHealth = null
 
 [node name="TestGhostEnemy" parent="." instance=ExtResource("3_2mp0h")]
 position = Vector2(-396, -356)
-attackDamage = null
-attackKnockback = null
-attackRange = null
-speed = null
-health = null
-maxHealth = null
 
 [node name="World" parent="." instance=ExtResource("3_23j5b")]
 
