@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_5qepa"]
 [ext_resource type="PackedScene" path="res://scenes/enemy/TestGhostEnemy.tscn" id="3_2mp0h"]
 [ext_resource type="PackedScene" uid="uid://cpfh1lampiusc" path="res://scenes/world.tscn" id="3_23j5b"]
-[ext_resource type="PackedScene" uid="uid://brfdvm1putq1c" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="3_kjc3e"]
+[ext_resource type="PackedScene" uid="uid://birj5av8ex727" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="3_kjc3e"]
 
 [node name="root" type="Node2D"]
 
