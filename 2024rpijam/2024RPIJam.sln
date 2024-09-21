@@ -1,25 +1,19 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.8.34525.116
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2024RPIJam", "2024RPIJam.csproj", "{46D79B66-77C1-4399-AA0B-F038272062F7}"
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2024RPIJam", "2024RPIJam.csproj", "{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		ExportDebug|Any CPU = ExportDebug|Any CPU
-		ExportRelease|Any CPU = ExportRelease|Any CPU
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{46D79B66-77C1-4399-AA0B-F038272062F7}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{BE1ABED2-F35C-4D67-9BF8-826D1182DDBB}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal
