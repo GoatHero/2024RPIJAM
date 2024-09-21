@@ -1,3 +1,27 @@
-[gd_scene format=3 uid="uid://cneqb06iijevw"]
+[gd_scene load_steps=3 format=3 uid="uid://cneqb06iijevw"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bumkm1w03kqf6" path="res://sprites/enemy/snake/babySnakeLink.png" id="1_wsvgv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgo2l"]
+radius = 15.0
+height = 50.0
+
+[node name="BabySnakeLink" type="RigidBody2D"]
+collision_layer = 24
+
+[node name="BabySnakeLink" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("1_wsvgv")
+
+[node name="front" type="Node2D" parent="."]
+position = Vector2(-20, 0)
+
+[node name="back" type="PinJoint2D" parent="."]
+position = Vector2(20, 0)
+node_a = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_hgo2l")

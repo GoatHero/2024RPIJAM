@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://cmxtos37a3i2v"]
+[gd_scene load_steps=4 format=3 uid="uid://cmxtos37a3i2v"]
 
-[node name="SnakeBaby" type="Node2D"]
+[ext_resource type="Script" path="res://scripts/enemy/snake/BabyHead.cs" id="1_k3gmn"]
+[ext_resource type="Texture2D" uid="uid://buev2dp3b546q" path="res://sprites/enemy/snake/babySnakeHead.png" id="1_p4gmj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
+radius = 15.0
+height = 50.0
+
+[node name="SnakeBaby" type="RigidBody2D"]
+collision_layer = 24
+script = ExtResource("1_k3gmn")
+
+[node name="BabySnakeHead" type="Sprite2D" parent="."]
+position = Vector2(5, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("1_p4gmj")
+
+[node name="back" type="PinJoint2D" parent="."]
+position = Vector2(20, 0)
+node_a = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_puy71")
