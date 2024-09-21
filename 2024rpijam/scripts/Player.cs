@@ -4,9 +4,9 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	public const float fallMulti = 1.5f;
-	public const float airMoveMulti = 3f;
-	public const float speed = 300.0f;
-	public const float jumpVelocity = -400.0f;
+	public const float airMoveMulti = 0.8f;
+	public const float speed = 700.0f;
+	public const float jumpVelocity = -500.0f;
 	
 
 	public override void _PhysicsProcess(double delta)
@@ -38,8 +38,8 @@ public partial class Player : CharacterBody2D
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, speed);
 			}
 		} else {
-			if(Mathf.Abs(velocity.X) < direction.X * speed) {
-				velocity.X += direction.X * speed * (float)delta * airMoveMulti;
+			if((direction.X > 0 && velocity.X < direction.X * speed) || (direction.X < 0 && velocity.X > direction.X * speed)) {
+				velocity.X += direction.X * speed * (float)delta * airMoveMulti * 5f;
 			}
 		}
 
