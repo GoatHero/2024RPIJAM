@@ -7,6 +7,7 @@
 radius = 68.0661
 
 [node name="TestFlyingEnemey" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
 collision_layer = 24
 script = ExtResource("1_e5r3t")
 
