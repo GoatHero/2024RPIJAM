@@ -2,21 +2,43 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class BaseEnemey : CharacterBody2D
+public partial class BaseEnemy : CharacterBody2D
 {
 	[Export]
+	public float speed = 100.0f;
+	[Export]
 	public float health = 10;
+	[Export]
+	public float maxHealth = 10;
 
+	protected bool canAttack = true;
 	protected Player player;
+	protected Timer timer;
 
 	public override void _Ready() {
 		base._Ready();
 		player = GetTree().Root.GetNode<Player>("root/Player");
+		timer = GetNode<Timer>("AttackCooldown");
+	}
+
+	public virtual bool moveToPosition(Vector2 pos) {
+		float dt = (float)GetPhysicsProcessDeltaTime();
+
+		Vector2 direction = pos - GlobalPosition;
+		
+		if (direction != Vector2.Zero) {
+			Velocity += dt * direction/direction.Length() * speed;
+		}
+		Velocity -= dt * Velocity * 0.9f;
+
+		MoveAndSlide();
+
+		return direction.Length() <= 0.01;
 	}
 
 	public virtual void damage(float amount, Vector2 knockback = new Vector2()) {
 		changeHealth(amount);
-		Velocity += knockback;
+		Velocity += knockback*50;
 	}
 
 	public virtual void changeHealth(float amount) {
@@ -28,5 +50,14 @@ public partial class BaseEnemey : CharacterBody2D
 
 	public virtual void kill() {
 		QueueFree();
+	}
+	
+	public virtual void addAttackCooldown(float amount = -1f) {
+		timer.Start((double)amount);
+		canAttack = false;
+	}
+	
+	public virtual void resetAttackCooldown() {
+		canAttack = true;
 	}
 }

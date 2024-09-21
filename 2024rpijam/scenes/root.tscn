@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dickv3jkmhyf"]
+[gd_scene load_steps=6 format=3 uid="uid://dickv3jkmhyf"]
 
-[ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="1_5qepa"]
-[ext_resource type="PackedScene" uid="uid://b8qbjvn85fsew" path="res://scenes/enemy/TestGhostEnemey.tscn" id="3_2mp0h"]
-[ext_resource type="PackedScene" path="res://scenes/world.tscn" id="3_23j5b"]
-[ext_resource type="PackedScene" uid="uid://5iufykhemqp1" path="res://scenes/enemy/TestFlyingEnemey.tscn" id="3_kjc3e"]
+[ext_resource type="PackedScene" uid="uid://fdp3nsta47ld" path="res://scenes/Player.tscn" id="1_5qepa"]
+[ext_resource type="PackedScene" uid="uid://dgr7kjy36tnx6" path="res://scenes/enemy/TestGhostEnemy.tscn" id="3_2mp0h"]
+[ext_resource type="PackedScene" uid="uid://cpfh1lampiusc" path="res://scenes/world.tscn" id="3_23j5b"]
+[ext_resource type="PackedScene" uid="uid://birj5av8ex727" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="3_kjc3e"]
+[ext_resource type="PackedScene" uid="uid://jofyi85whh84" path="res://scenes/Camera.tscn" id="5_4qooq"]
 
 [node name="root" type="Node2D"]
 
@@ -12,8 +13,11 @@ position = Vector2(239, 4)
 
 [node name="World" parent="." instance=ExtResource("3_23j5b")]
 
-[node name="TestFlyingEnemey" parent="." instance=ExtResource("3_kjc3e")]
+[node name="TestFlyingEnemy" parent="." instance=ExtResource("3_kjc3e")]
 position = Vector2(1163, -590)
 
-[node name="TestGhostEnemey" parent="." instance=ExtResource("3_2mp0h")]
+[node name="TestGhostEnemy" parent="." instance=ExtResource("3_2mp0h")]
 position = Vector2(-396, -356)
+
+[node name="Camera" parent="." instance=ExtResource("5_4qooq")]
+position = Vector2(280, -48)
