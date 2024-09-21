@@ -3,7 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float fallMulti = 1.0f;
+	public const float fallMulti = 1.5f;
 	public const float airMoveMulti = 3f;
 	public const float speed = 300.0f;
 	public const float jumpVelocity = -400.0f;
