@@ -9,7 +9,7 @@
 [node name="root" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5qepa")]
-position = Vector2(-129, 158)
+position = Vector2(-1223, 27)
 safe_margin = 0.15
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("3_kjc3e")]

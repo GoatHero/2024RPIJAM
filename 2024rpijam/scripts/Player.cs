@@ -6,13 +6,15 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float fallMulti = 1.5f;
 	[Export]
-	public float speed = 2700.0f;
+	public float dashSpeed = 4800.0f;
 	[Export]
-	public float airSpeed = 800.0f;
+	public float speed = 4400.0f;
 	[Export]
-	public float jumpVelocity = -500.0f;
+	public float airSpeed = 1300.0f;
 	[Export]
-	public float wallJumpVelocity = 400.0f;
+	public float jumpVelocity = -700.0f;
+	[Export]
+	public float wallJumpVelocity = 850.0f;
 	[Export]
 	public float airPoundMulti = 3f;
 
@@ -27,12 +29,13 @@ public partial class Player : CharacterBody2D
 	
 	public bool canAttack = true;
 	private bool rightFacing = true;
+	private bool canDash = false;
 	
 	
 	private Area2D hitbox;
 	private Area2D wallbox;
 	private Timer attackCooldownTimer;
-	private Timer dashUseTimer;
+	private Timer dashCoolTimer;
 	private Camera2D camera;
 	
 	public override void _Ready(){
@@ -40,26 +43,13 @@ public partial class Player : CharacterBody2D
 		hitbox = GetNode<Area2D>("hitbox");
 		wallbox = GetNode<Area2D>("wallBox");
 		attackCooldownTimer = GetNode<Timer>("hitTimer");
-		dashUseTimer = GetNode<Timer>("dashUseTimer");
+		dashCoolTimer = GetNode<Timer>("dashCoolTimer");
 		camera = GetNode<Camera2D>("camera");
 	}
 	public override void _PhysicsProcess(double delta)
 	{
 		float dt = (float)delta;
 		Vector2 velocity = Velocity;
-		
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump")) {
-			if (IsOnFloor()) {
-				velocity.Y = jumpVelocity;
-			} else if(wallbox.GetOverlappingBodies().Count > 0) {
-				float scaleX = rightFacing ? -1f : 1f;
-				velocity.X = scaleX * wallJumpVelocity;
-				velocity.Y = jumpVelocity;
-			} else if(velocity.Y < 0){
-				velocity.Y += jumpVelocity * 0.015f;
-			}
-		}
 		
 		//Handle Attack 
 		if (Input.IsActionJustPressed("attack") && canAttack){
@@ -85,6 +75,13 @@ public partial class Player : CharacterBody2D
 				}
 			}
 		}
+		//Handle Dash
+		if(Input.IsActionJustPressed("dash") && canDash){
+			velocity.X += horizontalMovement * dashSpeed;
+			velocity.Y = 0f;
+			dashCoolTimer.Start(0.01f);
+			canDash = false;
+		}
 
 		// Add the gravity and friction
 		if (IsOnFloor()) {
@@ -95,7 +92,28 @@ public partial class Player : CharacterBody2D
 				velocity += dt * GetGravity() * fallMulti * airPoundMulti;
 			velocity += dt * GetGravity() * fallMulti;
 		}
+		if(wallbox.GetOverlappingBodies().Count > 0){
+			if((velocity.X > 0 && rightFacing) || (velocity.X < 0 && !rightFacing)){
+				velocity.X = 0;
+			}
+		}
 
+		// Handle Jump.
+		if (Input.IsActionJustPressed("jump")) {
+			if (IsOnFloor()) {
+				velocity.Y = jumpVelocity;
+			} else if(wallbox.GetOverlappingBodies().Count > 0) {
+				float scaleX = rightFacing ? -1f : 1f;
+				velocity.X += scaleX * wallJumpVelocity;
+				velocity.Y = jumpVelocity;
+				setDirection(!rightFacing);
+			} else if(velocity.Y < 0){
+				velocity.Y += jumpVelocity * 0.015f;
+			}
+		}
+
+		if(IsOnFloor())
+			canDash = true;
 		Velocity = velocity;
 		MoveAndSlide();
 	}
@@ -125,12 +143,15 @@ public partial class Player : CharacterBody2D
 		GD.Print("Dead");
 	}
 
-	public virtual void addAttackCooldown(float amount = -1f) {
+	public void addAttackCooldown(float amount = -1f) {
 		attackCooldownTimer.Start((double)amount);
 		canAttack = false;
 	}
 	
-	public virtual void resetAttackCooldown() {
+	public void resetAttackCooldown() {
 		canAttack = true;
+	}
+	public void resetDash(){
+		Velocity = new Vector2(Velocity.X > 0 ? speed * 0.6f: -speed * 0.6f, 0);
 	}
 }

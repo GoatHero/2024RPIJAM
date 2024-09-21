@@ -12,7 +12,7 @@ height = 28.0
 radius = 38.2099
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7pwq"]
-size = Vector2(20, 50)
+size = Vector2(8, 50)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
@@ -66,9 +66,13 @@ texture = ExtResource("4_h8oin")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallBox"]
-position = Vector2(50, 0)
+position = Vector2(36, 0)
 shape = SubResource("RectangleShape2D_h7pwq")
 
 [node name="hitTimer" type="Timer" parent="."]
 
+[node name="dashCoolTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="hitTimer" to="." method="resetAttackCooldown"]
+[connection signal="timeout" from="dashCoolTimer" to="." method="resetDash"]
