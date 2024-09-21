@@ -1,3 +1,26 @@
-[gd_scene format=3 uid="uid://dickv3jkmhyf"]
+[gd_scene load_steps=5 format=3 uid="uid://dickv3jkmhyf"]
+
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1_5qepa"]
+[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_es5bu"]
+[ext_resource type="PackedScene" uid="uid://bp5ihhfo2fduy" path="res://scenes/baseEnemey.tscn" id="3_qkawu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75kaf"]
+size = Vector2(128.2, 127)
 
 [node name="root" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_5qepa")]
+position = Vector2(320, 97)
+
+[node name="Icon" type="StaticBody2D" parent="."]
+position = Vector2(250, 250)
+scale = Vector2(5, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon"]
+position = Vector2(0.100002, -0.5)
+shape = SubResource("RectangleShape2D_75kaf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Icon"]
+texture = ExtResource("2_es5bu")
+
+[node name="BaseEnemey" parent="." instance=ExtResource("3_qkawu")]
