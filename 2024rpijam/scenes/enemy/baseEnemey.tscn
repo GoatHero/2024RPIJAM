@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bp5ihhfo2fduy"]
+[gd_scene load_steps=4 format=3 uid="uid://bx57vfkcbuns7"]
 
-[ext_resource type="Script" path="res://scripts/enemy/TestGhostEnemey.cs" id="1_rfat8"]
-[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_3s0hi"]
+[ext_resource type="Script" path="res://scripts/enemy/TestGhostEnemey.cs" id="1_2017h"]
+[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_fj0sx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
 radius = 68.0661
 
 [node name="BaseEnemey" type="CharacterBody2D"]
-collision_layer = 16
-collision_mask = 16
-script = ExtResource("1_rfat8")
+scale = Vector2(0.5, 0.5)
+collision_layer = 24
+script = ExtResource("1_2017h")
 
 [node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_3s0hi")
+texture = ExtResource("2_fj0sx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_djsg4")
