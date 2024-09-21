@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j04ea8x1pu7t"
-path="res://.godot/imported/light.png-191c2812e8968dabd6c4fd26c78b4e95.ctex"
+uid="uid://curkodcdlitv5"
+path="res://.godot/imported/pixil-frame-0.png-c5a2bdb8348350aea5c4c5733d9ce064.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/light.png"
-dest_files=["res://.godot/imported/light.png-191c2812e8968dabd6c4fd26c78b4e95.ctex"]
+source_file="res://sprites/world/pixil-frame-0.png"
+dest_files=["res://.godot/imported/pixil-frame-0.png-c5a2bdb8348350aea5c4c5733d9ce064.ctex"]
 
 [params]
 

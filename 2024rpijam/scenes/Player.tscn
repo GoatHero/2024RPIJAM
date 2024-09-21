@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://opg6o12fn0h8"]
+[gd_scene load_steps=4 format=3 uid="uid://fdp3nsta47ld"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
 [ext_resource type="Texture2D" uid="uid://s5qi7c11dq8i" path="res://sprites/the_fellow.png" id="2_iqj2m"]
@@ -7,6 +7,7 @@
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
+collision_layer = 6
 script = ExtResource("1_mtpqr")
 
 [node name="Icon" type="Sprite2D" parent="."]

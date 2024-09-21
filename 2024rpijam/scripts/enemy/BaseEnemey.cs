@@ -5,7 +5,7 @@ using System.Diagnostics;
 public partial class BaseEnemy : CharacterBody2D
 {
 	[Export]
-	public float speed = 40.0f;
+	public float speed = 100.0f;
 
 	[Export]
 	public float health = 10;
@@ -18,12 +18,14 @@ public partial class BaseEnemy : CharacterBody2D
 	}
 
 	public virtual bool moveToPosition(Vector2 pos) {
+		float dt = (float)GetPhysicsProcessDeltaTime();
+
 		Vector2 direction = pos - GlobalPosition;
 		
 		if (direction != Vector2.Zero) {
-			Velocity += direction/direction.Length() * speed;
+			Velocity += dt * direction/direction.Length() * speed;
 		}
-		Velocity *= 0.9f;
+		Velocity -= dt * Velocity * 0.9f;
 
 		MoveAndSlide();
 
