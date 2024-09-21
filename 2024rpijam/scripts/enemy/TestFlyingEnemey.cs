@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class TestGhostEnemey : BaseEnemey
+public partial class TestFlyingEnemey : BaseEnemey
 {
 	[Export]
 	public float speed = 300.0f;
