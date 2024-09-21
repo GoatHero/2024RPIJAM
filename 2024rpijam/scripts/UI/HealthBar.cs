@@ -6,17 +6,30 @@ public partial class HealthBar : Sprite2D
 	[Export]
 	protected Player player;
 	[Export]
-	protected BaseEnemy enemy;
+	protected Node2D enemy;
+	protected BaseEnemy enemy_;
 
 	public override void _Ready()
 	{
+		if (enemy != null) {
+			if (enemy is BaseEnemy) {
+				enemy_ = enemy as BaseEnemy;
+			} else {
+				enemy = null;
+			}
+		}
 		if (player == null && enemy == null) {
 			try {
 				player = GetParent<Player>();
 			} catch {
 			}
 			try {
-				enemy = GetParent<BaseEnemy>();
+				enemy = GetParent<Node2D>();
+				if (enemy is BaseEnemy) {
+					enemy_ = enemy as BaseEnemy;
+				} else {
+					enemy = null;
+				}
 			} catch {
 			}
 		}
@@ -27,7 +40,7 @@ public partial class HealthBar : Sprite2D
 		if (player != null) {
 			Frame = (int)(player.health / player.maxHealth * 12);
 		} else if (enemy != null) {
-			Frame = (int)(enemy.health / enemy.maxHealth * 12);
+			Frame = (int)(enemy_.getHealth() / enemy_.getMaxHealth() * 12);
 		}
 	}
 }

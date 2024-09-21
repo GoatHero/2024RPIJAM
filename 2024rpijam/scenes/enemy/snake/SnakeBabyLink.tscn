@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cneqb06iijevw"]
+[gd_scene load_steps=5 format=3 uid="uid://cneqb06iijevw"]
 
+[ext_resource type="Script" path="res://scripts/enemy/snake/SnakeLink.cs" id="1_o0xlt"]
 [ext_resource type="Texture2D" uid="uid://bumkm1w03kqf6" path="res://sprites/enemy/snake/babySnakeLink.png" id="1_wsvgv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wwik0"]
+friction = 0.2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgo2l"]
 radius = 15.0
@@ -8,8 +12,14 @@ height = 50.0
 
 [node name="BabySnakeLink" type="RigidBody2D"]
 collision_layer = 24
+physics_material_override = SubResource("PhysicsMaterial_wwik0")
 gravity_scale = 0.0
+continuous_cd = 2
 linear_damp = 10.0
+script = ExtResource("1_o0xlt")
+speed = null
+health = null
+maxHealth = null
 
 [node name="BabySnakeLink" type="Sprite2D" parent="."]
 position = Vector2(5, -2.38419e-07)

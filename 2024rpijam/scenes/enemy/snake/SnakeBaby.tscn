@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmxtos37a3i2v"]
+[gd_scene load_steps=5 format=3 uid="uid://cmxtos37a3i2v"]
 
 [ext_resource type="Script" path="res://scripts/enemy/snake/BabyHead.cs" id="1_k3gmn"]
 [ext_resource type="Texture2D" uid="uid://buev2dp3b546q" path="res://sprites/enemy/snake/babySnakeHead.png" id="1_p4gmj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2lnah"]
+friction = 0.4
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
 radius = 15.0
@@ -9,10 +12,20 @@ height = 50.0
 
 [node name="SnakeBaby" type="RigidBody2D"]
 collision_layer = 24
+physics_material_override = SubResource("PhysicsMaterial_2lnah")
 gravity_scale = 0.0
+continuous_cd = 2
 linear_damp = 10.0
 angular_damp = 10.0
 script = ExtResource("1_k3gmn")
+attackDamage = null
+attackKnockback = null
+attackRange = null
+size = null
+rotationSpeed = null
+speed = null
+health = null
+maxHealth = null
 
 [node name="BabySnakeHead" type="Sprite2D" parent="."]
 position = Vector2(5, 0)
@@ -27,3 +40,10 @@ node_a = NodePath("..")
 visible = false
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_puy71")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

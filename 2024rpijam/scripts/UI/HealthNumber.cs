@@ -6,20 +6,32 @@ public partial class HealthNumber : RichTextLabel
 	[Export]
 	protected Player player;
 	[Export]
-	protected BaseEnemy enemy;
-
+	protected Node2D enemy;
+	protected BaseEnemy enemy_;
 	[Export]
 	private string beforeText;
 
 	public override void _Ready()
 	{
+		if (enemy != null) {
+			if (enemy is BaseEnemy) {
+				enemy_ = enemy as BaseEnemy;
+			} else {
+				enemy = null;
+			}
+		}
 		if (player == null && enemy == null) {
 			try {
 				player = GetParent<Player>();
 			} catch {
 			}
 			try {
-				enemy = GetParent<BaseEnemy>();
+				enemy = GetParent<Node2D>();
+				if (enemy is BaseEnemy) {
+					enemy_ = enemy as BaseEnemy;
+				} else {
+					enemy = null;
+				}
 			} catch {
 			}
 		}
@@ -30,7 +42,7 @@ public partial class HealthNumber : RichTextLabel
 		if (player != null) {
 			Text = beforeText+((int)(player.health / player.maxHealth*100f)).ToString() + "%";
 		} else if (enemy != null) {
-			Text = beforeText+((int)(enemy.health / enemy.maxHealth*100f)).ToString() + "%";
+			Text = beforeText+((int)(enemy_.getHealth() / enemy_.getMaxHealth()*100f)).ToString() + "%";
 		}
 	}
 }

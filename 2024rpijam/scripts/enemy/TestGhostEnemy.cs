@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class TestGhostEnemy : BaseEnemy
+public partial class TestGhostEnemy : BaseCharacterBodyEnemy
 {
 	[Export]
 	public float attackDamage = 10;
