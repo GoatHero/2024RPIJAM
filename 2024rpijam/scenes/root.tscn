@@ -1,24 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://dickv3jkmhyf"]
 
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="1_5qepa"]
-[ext_resource type="PackedScene" path="res://scenes/enemy/TestGhostEnemy.tscn" id="3_2mp0h"]
+[ext_resource type="PackedScene" uid="uid://dgr7kjy36tnx6" path="res://scenes/enemy/TestGhostEnemy.tscn" id="3_2mp0h"]
 [ext_resource type="PackedScene" uid="uid://cp51biefmbiq8" path="res://scenes/world.tscn" id="3_23j5b"]
-[ext_resource type="PackedScene" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="3_kjc3e"]
+[ext_resource type="PackedScene" uid="uid://birj5av8ex727" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="3_kjc3e"]
 [ext_resource type="PackedScene" uid="uid://cmxtos37a3i2v" path="res://scenes/enemy/snake/SnakeBaby.tscn" id="5_0wx3l"]
 
 [node name="root" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5qepa")]
-position = Vector2(-4127, -1321)
+position = Vector2(239, 4)
 safe_margin = 0.15
-fallMulti = 1.5
-speed = 2700.0
-airSpeed = 800.0
-jumpVelocity = -500.0
-wallJumpVelocity = 400.0
-airPoundMulti = 3.0
-health = 100.0
-maxHealth = 100.0
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("3_kjc3e")]
 position = Vector2(1163, -590)
@@ -27,6 +19,5 @@ position = Vector2(1163, -590)
 position = Vector2(-396, -356)
 
 [node name="World" parent="." instance=ExtResource("3_23j5b")]
-position = Vector2(-231, 161)
 
 [node name="SnakeBaby" parent="." instance=ExtResource("5_0wx3l")]
