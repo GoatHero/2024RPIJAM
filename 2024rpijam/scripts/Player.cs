@@ -20,34 +20,65 @@ public partial class Player : CharacterBody2D
 	public float health = 100;
 	[Export]
 	public float maxHealth = 100;
+	[Export]
+	public float attackDamage = 5f;
+	[Export]
+	public float attackCooldown = 0.6f;
 	
-
+	public bool canAttack = true;
+	private bool rightFacing = true;
+	
+	
+	private Area2D hitbox;
+	private Area2D wallbox;
+	private Timer attackCooldownTimer;
+	private Timer dashUseTimer;
+	private Camera2D camera;
+	
+	public override void _Ready(){
+		base._Ready();
+		hitbox = GetNode<Area2D>("hitbox");
+		wallbox = GetNode<Area2D>("wallBox");
+		attackCooldownTimer = GetNode<Timer>("hitTimer");
+		dashUseTimer = GetNode<Timer>("dashUseTimer");
+		camera = GetNode<Camera2D>("camera");
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		float dt = (float)delta;
-
 		Vector2 velocity = Velocity;
-
+		
 		// Handle Jump.
-		if (Input.IsActionPressed("jump")) {
+		if (Input.IsActionJustPressed("jump")) {
 			if (IsOnFloor()) {
 				velocity.Y = jumpVelocity;
-			} else if(IsOnWall()) {
-				Vector2 wallNormal = GetWallNormal();
-				if(wallNormal == Vector2.Right || wallNormal == Vector2.Left){
-					velocity.X = wallNormal.X * wallJumpVelocity;
-					velocity.Y = jumpVelocity; 
-				}
+			} else if(wallbox.GetOverlappingBodies().Count > 0) {
+				float scaleX = rightFacing ? -1f : 1f;
+				velocity.X = scaleX * wallJumpVelocity;
+				velocity.Y = jumpVelocity;
 			} else if(velocity.Y < 0){
 				velocity.Y += jumpVelocity * 0.015f;
 			}
 		}
 		
+		//Handle Attack 
+		if (Input.IsActionJustPressed("attack") && canAttack){
+			foreach(Node2D nodeH in hitbox.GetOverlappingBodies()){
+				if(nodeH is BaseEnemy){
+					BaseEnemy be = nodeH as BaseEnemy;
+					be.damage(attackDamage);
+					addAttackCooldown();
+				}
+			}
+		}
+		
+		
 		// Get the input direction and handle the movement/deceleration.
 		float horizontalMovement = Input.GetAxis("move_left", "move_right");
 		if (horizontalMovement != 0) {
+			setDirection(horizontalMovement > 0);
 			if(IsOnFloor()) {
-					velocity.X += dt * horizontalMovement * speed;
+				velocity.X += dt * horizontalMovement * speed;
 			} else {
 				if(horizontalMovement * speed < velocity.X || velocity.X < horizontalMovement * speed) {
 					velocity.X += dt * horizontalMovement * airSpeed;
@@ -68,6 +99,14 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
+	public void setDirection(bool right){
+		float scale = right ? 1 : -1;
+		Scale = new Vector2(1f, scale);
+		RotationDegrees = right ? 0 : 180;
+		camera.Scale = new Vector2(scale, 1f);
+		rightFacing = right;
+	}
 	
 	public void damage(float amount, Vector2 knockback = new Vector2()) {
 		GD.Print("hit: ", amount);
@@ -84,5 +123,14 @@ public partial class Player : CharacterBody2D
 
 	public virtual void kill() {
 		GD.Print("Dead");
+	}
+
+	public virtual void addAttackCooldown(float amount = -1f) {
+		attackCooldownTimer.Start((double)amount);
+		canAttack = false;
+	}
+	
+	public virtual void resetAttackCooldown() {
+		canAttack = true;
 	}
 }
