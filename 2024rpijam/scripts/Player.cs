@@ -12,7 +12,16 @@ public partial class Player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
-
+		
+		
+		if(IsOnWall() && !IsOnFloor() && Input.IsActionJustPressed("jump")){
+			//velocity.Y += jumpVelocity;
+			Vector2 wallNormal = GetWallNormal();
+			if(wallNormal == Vector2.Right || wallNormal == Vector2.Left){
+				velocity.X = (wallNormal * speed).X;
+				velocity.Y = jumpVelocity; 
+			}
+		}
 		// Add the gravity.
 		if (!IsOnFloor()) {
 			if (Input.IsActionPressed("fall"))
