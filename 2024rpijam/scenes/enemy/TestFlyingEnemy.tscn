@@ -20,3 +20,7 @@ shape = SubResource("CircleShape2D_djsg4")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

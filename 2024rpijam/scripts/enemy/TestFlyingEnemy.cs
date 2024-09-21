@@ -7,7 +7,7 @@ public partial class TestFlyingEnemy : BaseFlyingEnemy
 	[Export]
 	public float attackDamage = 10;
 	[Export]
-	public float attackKnockback = 1;
+	public float attackKnockback = 10;
 	[Export]
 	public float attackRange = 10;
 
@@ -20,8 +20,9 @@ public partial class TestFlyingEnemy : BaseFlyingEnemy
 
 		moveToPosition(getPathToPos(player.GlobalPosition));
 
-		if ((player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+		if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
 			attack(player);
+			addAttackCooldown();
 		}
 	}
 

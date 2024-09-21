@@ -6,15 +6,17 @@ public partial class BaseEnemy : CharacterBody2D
 {
 	[Export]
 	public float speed = 100.0f;
-
 	[Export]
 	public float health = 10;
 
+	protected bool canAttack = true;
 	protected Player player;
+	protected Timer timer;
 
 	public override void _Ready() {
 		base._Ready();
 		player = GetTree().Root.GetNode<Player>("root/Player");
+		timer = GetNode<Timer>("AttackCooldown");
 	}
 
 	public virtual bool moveToPosition(Vector2 pos) {
@@ -34,7 +36,7 @@ public partial class BaseEnemy : CharacterBody2D
 
 	public virtual void damage(float amount, Vector2 knockback = new Vector2()) {
 		changeHealth(amount);
-		Velocity += knockback;
+		Velocity += knockback*50;
 	}
 
 	public virtual void changeHealth(float amount) {
@@ -46,5 +48,14 @@ public partial class BaseEnemy : CharacterBody2D
 
 	public virtual void kill() {
 		QueueFree();
+	}
+	
+	public virtual void addAttackCooldown(float amount = -1f) {
+		timer.Start((double)amount);
+		canAttack = false;
+	}
+	
+	public virtual void resetAttackCooldown() {
+		canAttack = true;
 	}
 }

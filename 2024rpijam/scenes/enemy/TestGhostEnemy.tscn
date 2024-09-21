@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8qbjvn85fsew"]
+[gd_scene load_steps=4 format=3 uid="uid://dgr7kjy36tnx6"]
 
 [ext_resource type="Script" path="res://scripts/enemy/TestGhostEnemy.cs" id="1_0txap"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_tf21q"]
@@ -17,3 +17,7 @@ texture = ExtResource("2_tf21q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_djsg4")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

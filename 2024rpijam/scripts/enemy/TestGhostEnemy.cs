@@ -7,7 +7,7 @@ public partial class TestGhostEnemy : BaseEnemy
 	[Export]
 	public float attackDamage = 10;
 	[Export]
-	public float attackKnockback = 1;
+	public float attackKnockback = 10;
 	[Export]
 	public float attackRange = 10;
 
@@ -18,8 +18,9 @@ public partial class TestGhostEnemy : BaseEnemy
 	public override void _PhysicsProcess(double delta) {
 		moveToPosition(player.Position);
 
-		if ((player.Position - Position).Length() < attackRange) {
+		if (canAttack && (player.Position - Position).Length() < attackRange) {
 			attack(player);
+			addAttackCooldown();
 		}
 	}
 
