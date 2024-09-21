@@ -8,13 +8,13 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float dashSpeed = 4800.0f;
 	[Export]
-	public float speed = 4400.0f;
+	public float speed = 2800.0f;
 	[Export]
-	public float airSpeed = 1300.0f;
+	public float airSpeed = 1000.0f;
 	[Export]
-	public float jumpVelocity = -700.0f;
+	public float jumpVelocity = -600.0f;
 	[Export]
-	public float wallJumpVelocity = 850.0f;
+	public float wallJumpVelocity = 750.0f;
 	[Export]
 	public float airPoundMulti = 3f;
 
