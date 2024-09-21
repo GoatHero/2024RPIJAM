@@ -9,7 +9,7 @@ public partial class TestFlyingEnemy : BaseFlyingEnemy
 	[Export]
 	public float attackKnockback = 10;
 	[Export]
-	public float attackRange = 10;
+	public float attackRange = 30;
 
 	public override void _Ready() {
 		base._Ready();

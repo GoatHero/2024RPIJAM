@@ -70,8 +70,8 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public void damage(float amount, Vector2 knockback = new Vector2()) {
-		changeHealth(health);
 		GD.Print("hit: ", amount);
+		changeHealth(amount);
 		Velocity += knockback*50;
 	}
 

@@ -3,25 +3,25 @@ using System;
 
 public partial class HealthBar : Sprite2D
 {
+	[Export]
 	protected Player player;
+	[Export]
 	protected BaseEnemy enemy;
 
 	public override void _Ready()
 	{
-		try {
-			player = GetParent<Player>();
-		} catch {
-			player = null;
+		if (player == null && enemy == null) {
+			try {
+				player = GetParent<Player>();
+			} catch {
+			}
+			try {
+				enemy = GetParent<BaseEnemy>();
+			} catch {
+			}
 		}
-		try {
-			enemy = GetParent<BaseEnemy>();
-		} catch {
-			enemy = null;
-		}
-		
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if (player != null) {
