@@ -14,7 +14,10 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float wallJumpVelocity = 400.0f;
 	[Export]
-	public  float airPoundMulti = 3f;
+	public float airPoundMulti = 3f;
+
+	[Export]
+	public float health = 10;
 	
 
 	public override void _PhysicsProcess(double delta)
@@ -65,6 +68,19 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public void damage(float amount, Vector2 knockback = new Vector2()) {
-		
+		changeHealth(health);
+		GD.Print("hit: ", amount);
+		Velocity += knockback;
+	}
+
+	public virtual void changeHealth(float amount) {
+		health -= amount;
+		if (health <= 0.0f) {
+			kill();
+		}
+	}
+
+	public virtual void kill() {
+		GD.Print("Dead");
 	}
 }
