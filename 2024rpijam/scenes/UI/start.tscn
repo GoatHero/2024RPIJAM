@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dgsvjc0rej3c6"]
 
 [ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_l32wh"]
-[ext_resource type="PackedScene" uid="uid://dickv3jkmhyf" path="res://scenes/root.tscn" id="2_4ysl8"]
+[ext_resource type="Script" path="res://scripts/UI/ExitButton.cs" id="2_mn3ai"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwcc5"]
 
@@ -39,6 +39,7 @@ Button/styles/normal = SubResource("StyleBoxFlat_x2o8x")
 Button/styles/pressed = SubResource("StyleBoxFlat_uomcr")
 
 [sub_resource type="SystemFont" id="SystemFont_berc4"]
+subpixel_positioning = 0
 
 [node name="Start" type="Control"]
 layout_mode = 3
@@ -70,7 +71,6 @@ theme_override_font_sizes/font_size = 20
 text = "Start"
 icon_alignment = 1
 script = ExtResource("1_l32wh")
-sceneToGo = ExtResource("2_4ysl8")
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
@@ -82,5 +82,7 @@ scale = Vector2(10, 6.6)
 tooltip_text = "
 "
 text = "Exit"
+script = ExtResource("2_mn3ai")
 
 [connection signal="button_down" from="Start" to="." method="ButtonPressed" binds= ["res://scenes/root.tscn"]]
+[connection signal="button_down" from="Exit" to="Exit" method="ButtonPressed"]
