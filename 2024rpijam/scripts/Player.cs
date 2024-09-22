@@ -210,7 +210,7 @@ public partial class Player : CharacterBody2D {
 
 	public virtual void kill() {
 		GD.Print("death");
-		GetTree().ReloadCurrentScene();
+		GetTree().ChangeSceneToPacked(ResourceLoader.Load<PackedScene>("res://scenes/UI/DeathScreen.tscn"));
 	}
 
 	public void addAttackCooldown(float amount = -1f) {

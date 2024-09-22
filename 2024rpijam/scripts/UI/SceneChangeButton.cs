@@ -7,6 +7,7 @@ public partial class SceneChangeButton : Button
 	//And so you need to pass in scene info through button
 	public void buttonPressed(string stg, int level) {
 		GetTree().ChangeSceneToPacked(ResourceLoader.Load<PackedScene>(stg));
-		((GlobalData)(GetTree().Root.GetNode("GlobalData"))).currentLevel = level;
+		if(level > -1)
+			((GlobalData)(GetTree().Root.GetNode("GlobalData"))).currentLevel = level;
 	}
 }

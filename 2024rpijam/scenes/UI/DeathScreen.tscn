@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dabgfalm8nkmi"]
+
+[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_i0b8w"]
+[ext_resource type="Script" path="res://scripts/UI/Restart.cs" id="2_sidgw"]
+[ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="3_rkehn"]
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i0b8w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48, 27)
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 82.0
+offset_right = 639.0
+offset_bottom = 124.0
+scale = Vector2(6, 6)
+theme_override_font_sizes/font_size = 30
+text = "YOU DIED"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 614.0
+offset_top = 380.0
+offset_right = 914.0
+offset_bottom = 455.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/font_size = 36
+text = "Restart Level"
+script = ExtResource("2_sidgw")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 614.0
+offset_top = 608.0
+offset_right = 914.0
+offset_bottom = 683.0
+scale = Vector2(2, 2)
+theme_override_font_sizes/font_size = 36
+text = "Level Select"
+script = ExtResource("3_rkehn")
+
+[connection signal="pressed" from="Button3" to="Button3" method="OnPress"]
+[connection signal="pressed" from="Button" to="Button" method="buttonPressed" binds= ["res://scenes/UI/LevelSelect.tscn", 0]]
