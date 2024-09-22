@@ -1,11 +1,10 @@
-[gd_scene load_steps=70 format=3 uid="uid://opg6o12fn0h8"]
+[gd_scene load_steps=69 format=3 uid="uid://opg6o12fn0h8"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
 [ext_resource type="Texture2D" uid="uid://3mugagfpq25w" path="res://sprites/player/the_fellow_dash.png" id="2_54fgw"]
 [ext_resource type="Texture2D" uid="uid://s5qi7c11dq8i" path="res://sprites/player/the_fellow.png" id="2_iqj2m"]
 [ext_resource type="PackedScene" uid="uid://bigo0ycn36e4o" path="res://scenes/UI/HealthNumber.tscn" id="3_8ndyp"]
 [ext_resource type="Texture2D" uid="uid://b017dbtga02x5" path="res://sprites/player/the_fellow_jump.png" id="4_7fsln"]
-[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="4_h8oin"]
 [ext_resource type="Texture2D" uid="uid://gjahicv0fbmc" path="res://sprites/player/the_fellow_wall_kick.png" id="5_0n2g4"]
 [ext_resource type="Texture2D" uid="uid://csekiapduf3kh" path="res://sprites/player/the_fellow_slash.png" id="6_ucrlg"]
 
@@ -671,11 +670,6 @@ player = NodePath("../../..")
 [node name="hitBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
-
-[node name="hit" type="Sprite2D" parent="hitBox"]
-position = Vector2(52, -8)
-scale = Vector2(0.338269, 0.704616)
-texture = ExtResource("4_h8oin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
 visible = false
