@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=4 uid="uid://kaj2106hhwow"]
+[gd_scene load_steps=5 format=4 uid="uid://dph41s7t4iuo5"]
 
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="1_ypgw7"]
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="2_pdif2"]
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_tboeh"]
-[ext_resource type="PackedScene" uid="uid://skt4c2k6odmv" path="res://scenes/world stuff/door.tscn" id="4_y0s3y"]
+[ext_resource type="PackedScene" uid="uid://bmxhjoknswvur" path="res://scenes/world stuff/door.tscn" id="4_y0s3y"]
 
-[node name="root" type="Node2D"]
+[node name="root2" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 

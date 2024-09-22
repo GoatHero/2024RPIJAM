@@ -16,12 +16,14 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 	public Timer lineTimer;
 
 	public override void _Ready() {
+		base._Ready();
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		animatedSprite2D.Stop();
 		lineTimer = GetNode<Timer>("Timer");
 		for (int i = 0; i < areas.Count; i++)
 		{
 			areas[i].BodyEntered += (Node2D node) => {
+				GD.Print(lines[i]);
 				if (node is Player)
 					say(lines[i], times[i]);
 			};
