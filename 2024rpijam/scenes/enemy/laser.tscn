@@ -93,5 +93,3 @@ vertices = PackedVector2Array(0, -4, 0, 4, 116, 4, 116, -4)
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(1000, 0)
-
-[connection signal="body_entered" from="Area2D" to="." method="hit"]

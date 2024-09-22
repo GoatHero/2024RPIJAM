@@ -20,13 +20,6 @@ public partial class Laser : Node2D {
 
 	}
 
-	public void hit(Node2D node) {
-		/*float laserDamage = 10;
-		if(node is Player player) {
-			player.damage(laserDamage);
-		}*/
-	}
-
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta) {
 		setUp();
