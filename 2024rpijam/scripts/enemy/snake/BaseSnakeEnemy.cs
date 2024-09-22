@@ -34,7 +34,6 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		bool l = leftWallTrig.HasOverlappingBodies();
 		bool r = rightWallTrig.HasOverlappingBodies();
 		float moveSpeed = Math.Max(minSpeed, speed*size);
-		GD.Print(moveSpeed);
 		if (l && r) {
 			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		} else if (l) {

@@ -22,10 +22,6 @@ public partial class Laser : Node2D {
         float laserDamage = 10;
         if(node is Player player) {
             player.damage(laserDamage);
-        } else if(node is BaseCharacterBodyEnemy characterBodyEnemy) {
-            characterBodyEnemy.damage(laserDamage);
-        } else if(node is BaseEnemy baseEnemy) {
-            baseEnemy.damage(laserDamage);
         }
     }
 
