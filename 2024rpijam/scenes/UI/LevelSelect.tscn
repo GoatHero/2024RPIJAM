@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://batnjjndnxtj"]
+[gd_scene load_steps=4 format=3 uid="uid://bfd2mpn7a2ej8"]
 
 [ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_h3afx"]
 [ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_lr7js"]
