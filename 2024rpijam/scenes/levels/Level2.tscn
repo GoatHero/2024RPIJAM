@@ -28,9 +28,8 @@ metadata/_edit_lock_ = true
 position = Vector2(-1853, 879)
 safe_margin = 0.15
 
-[node name="Nar" parent="." node_paths=PackedStringArray("areas") instance=ExtResource("3_g5oec")]
+[node name="Nar" parent="." instance=ExtResource("3_g5oec")]
 position = Vector2(-2092, 875)
-areas = [NodePath("../Area2D")]
 lines = ["Get Ready"]
 times = [10.0]
 
