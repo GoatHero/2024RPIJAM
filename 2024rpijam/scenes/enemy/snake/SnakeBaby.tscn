@@ -16,16 +16,10 @@ physics_material_override = SubResource("PhysicsMaterial_2lnah")
 gravity_scale = 0.0
 continuous_cd = 2
 linear_damp = 10.0
-angular_damp = 10.0
+angular_damp = 5.0
 script = ExtResource("1_k3gmn")
-attackDamage = null
-attackKnockback = null
-attackRange = null
-size = null
-rotationSpeed = null
-speed = null
-health = null
-maxHealth = null
+size = 1
+rotationSpeed = 10
 
 [node name="BabySnakeHead" type="Sprite2D" parent="."]
 position = Vector2(5, 0)

@@ -16,3 +16,6 @@ data_*/
 mono_crash.*.json
 Properties/launchSettings.json
 Properties/launchSettings.json
+
+# vscode
+.vscode/

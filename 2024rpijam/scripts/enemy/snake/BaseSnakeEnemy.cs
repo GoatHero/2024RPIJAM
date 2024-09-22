@@ -39,6 +39,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 			while (at < -Math.PI) {
 				at += (float)Math.PI*2f;
 			}
+			GD.Print(dt*at*rotationSpeed*180f/(float)Math.PI);
 			ApplyTorqueImpulse(dt*at*rotationSpeed);
 		}
 
