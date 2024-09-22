@@ -128,10 +128,10 @@ position = Vector2(98.4902, 212.534)
 shape = SubResource("RectangleShape2D_a5jdq")
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("8_3qm44")]
-position = Vector2(-902, -3409)
+position = Vector2(-3216, -3050)
 
 [node name="TestFlyingEnemy2" parent="." instance=ExtResource("8_3qm44")]
-position = Vector2(-911, -3207)
+position = Vector2(-3346, -4562)
 
 [node name="TestFlyingEnemy3" parent="." instance=ExtResource("8_3qm44")]
-position = Vector2(-984, -3363)
+position = Vector2(-3376, -3822)
