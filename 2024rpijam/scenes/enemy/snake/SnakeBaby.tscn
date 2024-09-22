@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmxtos37a3i2v"]
+[gd_scene load_steps=9 format=3 uid="uid://cmxtos37a3i2v"]
 
 [ext_resource type="Script" path="res://scripts/enemy/snake/BabyHead.cs" id="1_k3gmn"]
 [ext_resource type="Texture2D" uid="uid://bjl7ktt657tai" path="res://sprites/enemy/snake/BabySnake.png" id="2_lwrtc"]
@@ -11,6 +11,9 @@ friction = 0.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
 radius = 15.0
 height = 50.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3kj6i"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bhsa"]
 radius = 13.0384
@@ -25,7 +28,7 @@ can_sleep = false
 continuous_cd = 2
 linear_damp = 10.0
 script = ExtResource("1_k3gmn")
-rotationSpeed = 2000
+attackDamage = 1.0
 speed = 2000.0
 health = 20.0
 maxHealth = 20.0
@@ -38,14 +41,22 @@ hframes = 2
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_puy71")
+
+[node name="attackBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackBox"]
+position = Vector2(-28.999, 0)
+shape = SubResource("CircleShape2D_3kj6i")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="front" type="Node2D" parent="."]
 position = Vector2(-20, 0)

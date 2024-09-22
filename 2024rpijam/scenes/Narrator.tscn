@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://buxi3b1mu5olq"]
+
+[ext_resource type="Script" path="res://scripts/environment/Narrator.cs" id="1_dyrhy"]
+[ext_resource type="Texture2D" uid="uid://rnkqrw5vm0gp" path="res://sprites/god_himself.png" id="1_gtep2"]
+[ext_resource type="FontFile" uid="uid://dioy2w6coivqu" path="res://other/tinypixel.otf" id="3_fvqrw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i7rj"]
+atlas = ExtResource("1_gtep2")
+region = Rect2(0, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igwoc"]
+atlas = ExtResource("1_gtep2")
+region = Rect2(48, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3nlw"]
+atlas = ExtResource("1_gtep2")
+region = Rect2(96, 0, 48, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2o1i"]
+atlas = ExtResource("1_gtep2")
+region = Rect2(144, 0, 48, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1p1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i7rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igwoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3nlw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2o1i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3k6yu"]
+font = ExtResource("3_fvqrw")
+font_size = 7
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dyrhy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y1p1j")
+frame_progress = 0.935909
+
+[node name="Label" type="Label" parent="AnimatedSprite2D"]
+offset_left = 25.0
+offset_top = -10.0
+offset_right = 107.0
+offset_bottom = 12.0
+label_settings = SubResource("LabelSettings_3k6yu")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="clearText"]
