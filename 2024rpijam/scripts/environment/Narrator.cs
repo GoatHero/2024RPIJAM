@@ -1,6 +1,7 @@
 using System;
 using Godot.Collections;
 using Godot;
+using static Godot.Area2D;
 
 public partial class Narrator : BaseCharacterBodyEnemy {
 	[Export]
@@ -22,10 +23,11 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 		lineTimer = GetNode<Timer>("Timer");
 		for (int i = 0; i < areas.Count; i++)
 		{
+			int index = i;
 			areas[i].BodyEntered += (Node2D node) => {
-				GD.Print(lines[i]);
+				GD.Print(node);
 				if (node is Player)
-					say(lines[i], times[i]);
+					say(lines[index], times[index]);
 			};
 		}
 	}
