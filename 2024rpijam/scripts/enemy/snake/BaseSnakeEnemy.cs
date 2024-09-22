@@ -9,6 +9,8 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	public int size = 1;
 	[Export]
 	public int rotationSpeed = 500;
+	[Export]
+	public int minSpeed = 0;
 
 	protected bool isHead = true;
 
@@ -31,14 +33,16 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 
 		bool l = leftWallTrig.HasOverlappingBodies();
 		bool r = rightWallTrig.HasOverlappingBodies();
+		float moveSpeed = Math.Max(minSpeed, speed*size);
+		GD.Print(moveSpeed);
 		if (l && r) {
-			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*speed*size);
+			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		} else if (l) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*speed*size);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*moveSpeed);
 		} else if (r) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*speed*size);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*moveSpeed);
 		} else {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*size);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		}
 
 		Vector2 direction = pos - GlobalPosition;
@@ -60,8 +64,9 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		return direction.Length() <= 0.01;
 	}
 
-	public virtual void removeSegment(BaseSnakeEnemy segment) {
-		child.makeHead();
+	public virtual void removeSegment() {
+		child?.makeHead();
+		parent?.updateSize(1);
 		QueueFree();
 	}
 
@@ -102,5 +107,11 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		child = newSegment;
 
 		back.NodeB = newSegment.GetPath();
+	}
+
+	public virtual void updateSize(int newSize) {
+		GD.Print("new size: ", newSize, " old size: ", size);
+		size = newSize;
+		parent?.updateSize(newSize+1);
 	}
 }

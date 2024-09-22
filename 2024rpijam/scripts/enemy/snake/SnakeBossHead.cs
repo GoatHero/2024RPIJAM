@@ -60,7 +60,6 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	}
 
 	public override void kill() {		
-		child?.makeHead();
-		QueueFree();
+		removeSegment();
 	}
 }

@@ -15,6 +15,12 @@ safe_margin = 0.15
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("3_kjc3e")]
 position = Vector2(1163, -590)
+attackDamage = 10.0
+attackKnockback = 10.0
+attackRange = 30.0
+speed = 100.0
+health = 10.0
+maxHealth = 10.0
 
 [node name="TestGhostEnemy" parent="." instance=ExtResource("3_2mp0h")]
 position = Vector2(-396, -356)
