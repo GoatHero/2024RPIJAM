@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpm4tqb0dpjhv"]
+
+[ext_resource type="Script" path="res://scripts/UI/GlobalData.cs" id="1_pl4v7"]
+
+[node name="GlobalData" type="Node2D"]
+script = ExtResource("1_pl4v7")

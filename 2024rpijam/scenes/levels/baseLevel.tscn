@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://dickv3jkmhyf"]
+[gd_scene load_steps=5 format=4 uid="uid://dickv3jkmhyf"]
 
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="1_f31po"]
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="2_f5pyr"]
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_j87xc"]
+[ext_resource type="PackedScene" uid="uid://dgkhwglrtja18" path="res://scenes/enemy/laser.tscn" id="4_37x0c"]
 
 [node name="root" type="Node2D"]
 

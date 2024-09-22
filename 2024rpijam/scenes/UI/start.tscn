@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dgsvjc0rej3c6"]
 
-[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_jh35s"]
-[ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_l32wh"]
-[ext_resource type="Script" path="res://scripts/UI/ExitButton.cs" id="2_mn3ai"]
+[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_auf3i"]
+[ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="2_wiyy2"]
+[ext_resource type="Script" path="res://scripts/UI/ExitButton.cs" id="3_17vgd"]
 
 [sub_resource type="SystemFont" id="SystemFont_berc4"]
 subpixel_positioning = 0
@@ -17,8 +17,8 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = 576.0
 offset_bottom = 324.0
-theme = ExtResource("1_jh35s")
-script = ExtResource("1_l32wh")
+theme = ExtResource("1_auf3i")
+script = ExtResource("2_wiyy2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -36,7 +36,7 @@ theme_override_fonts/font = SubResource("SystemFont_berc4")
 theme_override_font_sizes/font_size = 20
 text = "Start"
 icon_alignment = 1
-script = ExtResource("1_l32wh")
+script = ExtResource("2_wiyy2")
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
@@ -48,7 +48,7 @@ scale = Vector2(10, 6.6)
 tooltip_text = "
 "
 text = "Exit"
-script = ExtResource("2_mn3ai")
+script = ExtResource("3_17vgd")
 
-[connection signal="pressed" from="Start" to="Start" method="buttonPressed" binds= ["res://scenes/root.tscn"]]
+[connection signal="pressed" from="Start" to="Start" method="buttonPressed" binds= ["res://scenes/UI/LevelSelect.tscn", 0]]
 [connection signal="pressed" from="Exit" to="Exit" method="buttonPressed"]
