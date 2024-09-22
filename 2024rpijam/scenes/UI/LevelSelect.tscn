@@ -73,8 +73,3 @@ offset_right = -276.0
 offset_bottom = -446.0
 scale = Vector2(8.6, 5.84)
 text = "Level Select"
-
-[connection signal="pressed" from="Level1" to="Level1" method="buttonPressed" binds= ["res://scenes/levels/level1.tscn"]]
-[connection signal="pressed" from="Level2" to="Level2" method="buttonPressed" binds= ["res://scenes/levels/level2.tscn"]]
-[connection signal="pressed" from="Level3" to="Level3" method="buttonPressed" binds= ["res://scenes/levels/level3.tscn"]]
-[connection signal="pressed" from="Level4" to="Level4" method="buttonPressed" binds= ["res://scenes/levels/level4.tscn"]]
