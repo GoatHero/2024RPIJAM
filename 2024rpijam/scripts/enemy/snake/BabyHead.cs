@@ -12,22 +12,48 @@ public partial class BabyHead : BaseSnakeEnemy
 	[Export]
 	public float attackRange = 30;
 
-	private PackedScene linkPackedScene;
+	protected Sprite2D sprite;
+	protected PackedScene linkPackedScene;
 
 	public override void _Ready() {
 		base._Ready();
-		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBabyLink.tscn");
+		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBaby.tscn");
+		sprite = GetNode<Sprite2D>("Sprite");
 		makeSegments(linkPackedScene);
 	}
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
+		float dt = (float)delta;
 
-		moveToPosition(getPathToPos(player.GlobalPosition));		
+		if (isHead) {
+			sprite.Frame = 0;
+			
+			moveToPosition(getPathToPos(player.GlobalPosition));		
 
-		if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
-			attack(player);
-			addAttackCooldown();
+			if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+				attack(player);
+				addAttackCooldown();
+			}
+		} else {
+			sprite.Frame = 1;
+
+			Vector2 vel = LinearVelocity.Rotated(-GlobalRotation);
+			vel.X = 0;
+			if (vel.Length() > 0) {
+				vel.Y *= -10f;
+				vel = vel.Rotated(GlobalRotation);
+				ApplyImpulse(dt*vel);
+			}
+		}
+	}
+
+	public override void damage(float amount, Vector2 knockback = new Vector2()) {
+		if (isHead) {
+			base.damage(amount, knockback);
+		} else {
+			ApplyCentralImpulse(knockback*50);
+			parent.damage(amount);
 		}
 	}
 
@@ -38,8 +64,7 @@ public partial class BabyHead : BaseSnakeEnemy
 	}
 
 	public override void kill() {
-		for (int i = segments.Count-1; i >= 0; i--) {
-			segments[i].QueueFree();
-		}
+		child?.kill();
+		QueueFree();
 	}
 }

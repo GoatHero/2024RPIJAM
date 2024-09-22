@@ -6,22 +6,24 @@ using System.Linq;
 public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 {
 	[Export]
-	public int size = 5;
+	public int size = 1;
 	[Export]
 	public int rotationSpeed = 500;
 
-	[Export]
-	protected Area2D leftWallTrig;
-	[Export]
-	protected Area2D rightWallTrig;
+	protected bool isHead = true;
 
+	public BaseSnakeEnemy parent;
+	public BaseSnakeEnemy child;
+	protected Area2D leftWallTrig;
+	protected Area2D rightWallTrig;
 	protected NavigationAgent2D navAgent;
-	protected Array<RigidBody2D> segments = new();
+	
 
 	public override void _Ready() {
 		base._Ready();
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
-		segments.Add(this);
+		leftWallTrig = GetNode<Area2D>("LeftWallTrig");
+		rightWallTrig = GetNode<Area2D>("RightWallTrig");
 	}
 
 	public override bool moveToPosition(Vector2 pos) {
@@ -30,19 +32,19 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		bool l = leftWallTrig.HasOverlappingBodies();
 		bool r = rightWallTrig.HasOverlappingBodies();
 		if (l && r) {
-			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
+			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*speed*size);
 		} else if (l) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*speed*segments.Count);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*speed*size);
 		} else if (r) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*speed*segments.Count);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*speed*size);
 		} else {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*size);
 		}
 
 		Vector2 direction = pos - GlobalPosition;
 		
 		if (direction.Length() > 0f) {
-			ApplyCentralImpulse(dt*direction/direction.Length()*speed*segments.Count*0.1f);
+			ApplyCentralImpulse(dt*direction/direction.Length()*speed*size*0.1f);
 
 			float at = direction.Angle()-GlobalRotation+(float)Math.PI;
 			
@@ -52,48 +54,26 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 			while (at < -Math.PI) {
 				at += (float)Math.PI*2f;
 			}
-			ApplyTorqueImpulse(dt*at*rotationSpeed*segments.Count);
+			ApplyTorqueImpulse(dt*at*rotationSpeed);
 		}
 
 		return direction.Length() <= 0.01;
 	}
 
-	public virtual void removeSegment(BaseSnakeLink segment) {
-		int loc = segments.BinarySearch(segment);
-		if (loc < 0) return;
-		for (int i = segments.Count-1; i >= loc; i--) {
-			if (segments[i] is BaseSnakeLink) {
-				(segments[i] as BaseSnakeLink).head = null;
-			}
-			segments.RemoveAt(i);
-		}
+	public virtual void removeSegment(BaseSnakeEnemy segment) {
+		child.makeHead();
+		QueueFree();
 	}
 
 	public void makeSegments(PackedScene linkScene) {
-		CallDeferred("makeSegments_", linkScene);
+		if (size > 1)
+			CallDeferred("makeSegments_", linkScene, size);
 	}
 
-	private void makeSegments_(PackedScene linkScene) {
-		while (size > segments.Count) {
-			addToSegment(segments.Last(), linkScene);
-		}
-	}
-
-	public void addToSegment(RigidBody2D segment, PackedScene newSegmentPackedScene) {
-		BaseSnakeLink newSegment = newSegmentPackedScene.Instantiate<BaseSnakeLink>();
-		segments.Add(newSegment);
-		
-		segment.AddSibling(newSegment);
-		GetParent().MoveChild(newSegment, segment.GetIndex());
-		
-
-		Node2D front = newSegment.GetNode<Node2D>("front");
-		PinJoint2D back = segment.GetNode<PinJoint2D>("back");
-		newSegment.GlobalPosition += back.GlobalPosition - front.GlobalPosition;
-
-		back.NodeB = newSegment.GetPath();
-
-		newSegment.head = this;
+	private void makeSegments_(PackedScene linkScene, int size) {
+		this.size = size;
+		addSegment(linkScene);
+		if (size > 2) child.makeSegments_(linkScene, size-1);
 	}
 
 	public virtual Vector2 getPathToPos(Vector2 pos) {
@@ -102,24 +82,25 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		return navAgent.GetNextPathPosition();
 	}
 
-	public virtual void scanForSegments() {
-		segments.Clear();
-		segments.Add(this);
-		BaseSnakeLink link = getBackNode();
-		while (link != null) {
-			segments.Add(link);
-			link.head = this;
-			link = link.getBackNode();
-		}
+	public virtual void makeHead() {
+		if (isHead) return;
+		isHead = true;
 	}
 
-	public virtual BaseSnakeLink getBackNode() {
-		PinJoint2D back = GetNode<PinJoint2D>("back");
-		if (back.NodeB == null) return null;
-	
-		Node node = GetNodeOrNull(back.NodeB);
-		if (node is not BaseSnakeLink) return null;
+	public virtual void addSegment(PackedScene newSegmentPackedScene) {
+		BaseSnakeEnemy newSegment = newSegmentPackedScene.Instantiate<BaseSnakeEnemy>();
+		newSegment.isHead = false;
+
+		AddSibling(newSegment);
+		GetParent().MoveChild(newSegment, GetIndex());
 		
-		return node as BaseSnakeLink;
+		Node2D front = newSegment.GetNode<Node2D>("front");
+		PinJoint2D back = GetNode<PinJoint2D>("back");
+		newSegment.GlobalPosition += back.GlobalPosition - front.GlobalPosition;
+	
+		newSegment.parent = this;
+		child = newSegment;
+
+		back.NodeB = newSegment.GetPath();
 	}
 }

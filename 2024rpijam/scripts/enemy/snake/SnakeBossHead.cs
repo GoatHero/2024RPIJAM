@@ -12,24 +12,29 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	[Export]
 	public float attackRange = 30;
 
-	private PackedScene linkPackedScene;
-	private PackedScene headPackedScene;
+	protected Sprite2D sprite;
+	protected PackedScene headPackedScene;
 
 	public override void _Ready() {
 		base._Ready();
-		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBossLink.tscn");
 		headPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBoss.tscn");
-		makeSegments(linkPackedScene);
+		sprite = GetNode<Sprite2D>("Sprite");
+		makeSegments(headPackedScene);
 	}
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
 
-		moveToPosition(getPathToPos(player.GlobalPosition));		
+		if (isHead) {
+			sprite.Frame = 0;
+			moveToPosition(getPathToPos(player.GlobalPosition));		
 
-		if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
-			attack(player);
-			addAttackCooldown();
+			if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+				attack(player);
+				addAttackCooldown();
+			}
+		} else {
+			sprite.Frame = 1;
 		}
 	}
 
@@ -39,17 +44,8 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 		player.damage(attackDamage, dif*attackKnockback);
 	}
 
-	public override void kill() {
-		GD.Print("segments.Count: ",segments.Count);
-		foreach (RigidBody2D segment in segments) {
-			if (segment is BaseSnakeLink) {
-				(segments[1] as BaseSnakeLink).head = null;
-			}
-		}
-		if (segments.Count > 1) {
-			if (segments[1] is BaseSnakeLink)
-				(segments[1] as BaseSnakeLink).makeHead(headPackedScene);
-		}
+	public override void kill() {		
+		child?.makeHead();
 		QueueFree();
 	}
 }

@@ -8,9 +8,6 @@ public partial class HealthBar : Sprite2D
 	[Export]
 	protected Node2D enemy;
 
-	[Export]
-	protected bool hideWhenFull = false;
-
 	protected BaseEnemy enemy_;
 
 	public override void _Ready()
@@ -41,7 +38,7 @@ public partial class HealthBar : Sprite2D
 
 	public override void _Process(double delta)
 	{
-		if (hideWhenFull && getHealth() == getMaxHealth())
+		if (getHealth() == getMaxHealth())
 			Visible = false;
 		else {
 			Visible = true;

@@ -1,12 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://b0xuckrnmu8n6"]
 
 [ext_resource type="Script" path="res://scripts/enemy/snake/SnakeBossHead.cs" id="1_kksdl"]
-[ext_resource type="Texture2D" uid="uid://c42upx1qdddpi" path="res://sprites/enemy/snake/bossSnakeHead.png" id="2_o3wna"]
 [ext_resource type="Script" path="res://scripts/HoldDirection.cs" id="3_2d1xk"]
 [ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/UI/HealthBar.tscn" id="3_7djal"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2lnah"]
 friction = 0.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xmhw7"]
+load_path = "res://.godot/imported/BossSnake.png-d0f4b883b5d22e66e473e3e5030c30d0.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
 radius = 15.0
@@ -15,7 +17,7 @@ height = 50.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bhsa"]
 radius = 13.0384
 
-[node name="SnakeBoss" type="RigidBody2D" node_paths=PackedStringArray("leftWallTrig", "rightWallTrig")]
+[node name="SnakeBoss" type="RigidBody2D"]
 position = Vector2(0, 1)
 rotation = -0.000641442
 collision_layer = 24
@@ -26,25 +28,13 @@ can_sleep = false
 continuous_cd = 2
 linear_damp = 10.0
 script = ExtResource("1_kksdl")
-attackDamage = null
-attackKnockback = null
-attackRange = null
-size = null
-rotationSpeed = null
-leftWallTrig = NodePath("LeftWallTrig")
-rightWallTrig = NodePath("RightWallTrig")
-speed = null
 health = 20.0
 maxHealth = 20.0
 
-[node name="SnakeHead" type="Sprite2D" parent="."]
-position = Vector2(2.04636e-12, -3.18659e-09)
+[node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(5, 5)
-texture = ExtResource("2_o3wna")
-
-[node name="back" type="PinJoint2D" parent="."]
-position = Vector2(23, 0.0147532)
-node_a = NodePath("..")
+texture = SubResource("CompressedTexture2D_xmhw7")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -55,6 +45,13 @@ shape = SubResource("CapsuleShape2D_puy71")
 avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="front" type="Node2D" parent="."]
+position = Vector2(-23, 0)
+
+[node name="back" type="PinJoint2D" parent="."]
+position = Vector2(23, 0.0147532)
+node_a = NodePath("..")
 
 [node name="LeftWallTrig" type="Area2D" parent="."]
 visible = false
@@ -76,14 +73,12 @@ rotation = 1.57079
 shape = SubResource("CircleShape2D_6bhsa")
 metadata/_edit_lock_ = true
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="not rotating" type="Node2D" parent="."]
 script = ExtResource("3_2d1xk")
-direction = null
 
-[node name="HealthBar" parent="Node2D" node_paths=PackedStringArray("enemy") instance=ExtResource("3_7djal")]
+[node name="HealthBar" parent="not rotating" node_paths=PackedStringArray("enemy") instance=ExtResource("3_7djal")]
 position = Vector2(0.0250162, -39)
 scale = Vector2(5, 5)
 enemy = NodePath("../..")
-hideWhenFull = true
 
 [connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

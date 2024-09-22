@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bumkm1w03kqf6"
-path="res://.godot/imported/babySnakeLink.png-8f0201d741ae8d2694d3268f1caeab43.ctex"
+uid="uid://d1hhsyo6psj1d"
+path="res://.godot/imported/BossSnake.png-d0f4b883b5d22e66e473e3e5030c30d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemy/snake/babySnakeLink.png"
-dest_files=["res://.godot/imported/babySnakeLink.png-8f0201d741ae8d2694d3268f1caeab43.ctex"]
+source_file="res://sprites/enemy/snake/BossSnake.png"
+dest_files=["res://.godot/imported/BossSnake.png-d0f4b883b5d22e66e473e3e5030c30d0.ctex"]
 
 [params]
 
