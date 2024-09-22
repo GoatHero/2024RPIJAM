@@ -95,3 +95,5 @@ shape = SubResource("RectangleShape2D_5icvb")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 visible = false
 vertices = PackedVector2Array(0, -4, 0, 4, 116, 4, 116, -4)
+
+[connection signal="body_entered" from="Area2D" to="." method="hit"]
