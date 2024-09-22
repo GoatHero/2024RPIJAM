@@ -29,56 +29,7 @@ public partial class Player : CharacterBody2D {
     public bool canAttack = true;
     private bool rightFacing = true;
     private bool canDash = false;
-	public override void _PhysicsProcess(double delta)
-	{
-		float dt = (float)delta;
-		Vector2 velocity = Velocity;
-		
-		//Handle Attack 
-		if (Input.IsActionJustPressed("attack") && canAttack) {
-			/* only attack closest */
-			// Node2D closest = null;
-			// foreach(Node2D node in hitBox.GetOverlappingBodies()) {
-			// 	if (IsInstanceValid(node) && node is BaseEnemy) {
-			// 		if (
-			// 			closest == null ||
-			// 			(closest.GlobalPosition - GlobalPosition) > (node.GlobalPosition - GlobalPosition)
-			// 		) {
-			// 			closest = node;
-			// 		}
-			// 	}
-			// }
-			// if (closest != null)
-			// 	(closest as BaseEnemy).damage(attackDamage);
 
-			/* attack all in range */
-			foreach(Node2D node in hitBox.GetOverlappingBodies()) {
-				if (IsInstanceValid(node) && node is BaseEnemy) {
-					(node as BaseEnemy).damage(attackDamage);
-				}
-			}
-			addAttackCooldown();
-		}
-		
-		
-		bool isPressingHorizontalKey = false;
-		// Get the input direction and handle the movement/deceleration.
-		float horizontalMovement = Input.GetAxis("move_left", "move_right");
-		if (horizontalMovement != 0) {
-			isPressingHorizontalKey = true;
-			setDirection(horizontalMovement > 0);
-			if (!animationPlayer.IsPlaying() || animationPlayer.CurrentAnimation != "Run")
-				animationPlayer.Play("Run");
-			if (IsOnFloor()) {
-				velocity.X += dt * horizontalMovement * speed;
-			} else {
-				if (horizontalMovement * speed < velocity.X || velocity.X < horizontalMovement * speed) {
-					velocity.X += dt * horizontalMovement * airSpeed;
-				}
-			}
-		} else if (animationPlayer.CurrentAnimation == "Run") {
-			animationPlayer.Play("Reset");
-		}
 
 
     private Area2D hitBox;
@@ -104,20 +55,7 @@ public partial class Player : CharacterBody2D {
     public override void _PhysicsProcess(double delta) {
         float dt = (float)delta;
         Vector2 velocity = Velocity;
-	public void setDirection(bool right) {
-		float scale = right ? 1 : -1;
-		Scale = new Vector2(1f, scale);
-		RotationDegrees = right ? 0 : 180;
-		camera.Scale = new Vector2(scale, 1f);
-		if (right != (wallBoxL.Position.X < wallBoxR.Position.X))
-			(wallBoxL.Position, wallBoxR.Position) = (wallBoxR.Position, wallBoxL.Position);
-		rightFacing = right;
-	}
-	
-	public void damage(float amount, Vector2 knockback = new Vector2()) {
-		changeHealth(amount);
-		Velocity += knockback*50;
-	}
+
 
         //Handle Attack 
         if(Input.IsActionJustPressed("attack") && canAttack) {
