@@ -232,9 +232,11 @@ height = 103.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7pwq"]
 size = Vector2(17, 80)
 
-[sub_resource type="Animation" id="Animation_lgbph"]
-resource_name = "Reset"
-length = 0.001
+[sub_resource type="Animation" id="Animation_pexh4"]
+resource_name = "Attack"
+length = 1.00001
+loop_mode = 1
+step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -245,7 +247,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Idle"]
+"values": [&"attack"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -254,10 +256,10 @@ tracks/1/path = NodePath("Icon:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.4375, 0.5, 0.5625, 0.6875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -269,12 +271,12 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(4, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_xy6ch"]
-resource_name = "Run"
-length = 0.750013
+[sub_resource type="Animation" id="Animation_5kc1x"]
+resource_name = "Dash"
+length = 0.375012
 loop_mode = 1
 step = 0.125
 tracks/0/type = "value"
@@ -284,10 +286,10 @@ tracks/0/path = NodePath("Icon:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.125),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Run"]
+"values": [&"Dash"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -296,10 +298,10 @@ tracks/1/path = NodePath("Icon:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.125),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -411,6 +413,88 @@ tracks/0/keys = {
 "values": [2]
 }
 
+[sub_resource type="Animation" id="Animation_lgbph"]
+resource_name = "Reset"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Icon:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xy6ch"]
+resource_name = "Run"
+length = 0.750013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Run"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Icon:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_7tn6v"]
 resource_name = "Wall_Kick"
 length = 0.500013
@@ -452,90 +536,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_pexh4"]
-resource_name = "Attack"
-length = 1.00001
-loop_mode = 1
-step = 0.0625
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"attack"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.4375, 0.5, 0.5625, 0.6875),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_5kc1x"]
-resource_name = "Dash"
-length = 0.375012
-loop_mode = 1
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.125),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Dash"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.125),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2aft"]
 _data = {
 "Attack": SubResource("Animation_pexh4"),
@@ -552,6 +552,17 @@ _data = {
 z_index = 50
 collision_layer = 6
 script = ExtResource("1_mtpqr")
+fallMulti = null
+dashSpeed = null
+speed = null
+airSpeed = null
+jumpVelocity = null
+wallJumpVelocity = null
+airPoundMulti = null
+health = null
+maxHealth = null
+attackDamage = null
+attackCooldown = null
 
 [node name="Icon" type="AnimatedSprite2D" parent="."]
 position = Vector2(9.53674e-07, 0)
@@ -583,6 +594,7 @@ grow_vertical = 2
 [node name="HealthNumber" parent="camera/Control" node_paths=PackedStringArray("player") instance=ExtResource("3_8ndyp")]
 layout_mode = 0
 player = NodePath("../../..")
+beforeText = null
 
 [node name="hitBox" type="Area2D" parent="."]
 collision_layer = 0

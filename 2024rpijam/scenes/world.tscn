@@ -12,7 +12,7 @@ tile_set = ExtResource("1_doded")
 metadata/_edit_lock_ = true
 
 [node name="Camera" parent="." instance=ExtResource("2_yn36u")]
-position = Vector2(280, -48)
+position = Vector2(120, -456)
 
 [node name="Camera2" parent="." instance=ExtResource("2_yn36u")]
 position = Vector2(-840, -447)
