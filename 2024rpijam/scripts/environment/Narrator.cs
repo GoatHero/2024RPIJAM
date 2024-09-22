@@ -8,18 +8,25 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 	[Export]
 	public Array<string> lines { get; set; } = new();
 	[Export]
-	public Array<string> times { get; set; } = new();
+	public Array<float> times { get; set; } = new();
 
 	[Export]
 	public bool isStatic = false; 
 	public AnimatedSprite2D animatedSprite2D;
 	public Timer lineTimer;
 
-	// public override void _Ready() {
-	// 	animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-	// 	lineTimer = GetNode<Timer>("Timer");
-	// 	for 
-	// }
+	public override void _Ready() {
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animatedSprite2D.Stop();
+		lineTimer = GetNode<Timer>("Timer");
+		for (int i = 0; i < areas.Count; i++)
+		{
+			areas[i].BodyEntered += (Node2D node) => {
+				if (node is Player)
+					say(lines[i], times[i]);
+			};
+		}
+	}
 
 	public override void _PhysicsProcess(double delta) {
 		if (!isStatic) {
@@ -77,9 +84,11 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 	public void say(string str, float time = -1) {
 		GetNode<Label>("AnimatedSprite2D/Label").Text = str;
 		lineTimer.Start(time);
+		animatedSprite2D.Play();
 	}
 
     public void clearText() {
         setDialogue(-1);
+		animatedSprite2D.Stop();
     }
 }

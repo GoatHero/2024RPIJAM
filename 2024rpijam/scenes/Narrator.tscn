@@ -60,7 +60,7 @@ shape = SubResource("CircleShape2D_f3vtk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y1p1j")
-frame_progress = 0.209295
+frame_progress = 0.161849
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
 offset_left = 25.0
