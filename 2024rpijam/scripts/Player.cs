@@ -89,8 +89,7 @@ public partial class Player : CharacterBody2D
 
 		//Handle Dash
 		if (Input.IsActionJustPressed("dash") && canDash) {
-			velocity.X += horizontalMovement * dashSpeed;
-			velocity.Y = 0f;
+			velocity.X += rightFacing ? dashSpeed : -dashSpeed;
 			dashCoolTimer.Start(0.01f);
 			canDash = false;
 		}
