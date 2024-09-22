@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bfd2mpn7a2ej8"]
 
-[ext_resource type="Theme" path="res://other/start.theme" id="1_h3afx"]
+[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_h3afx"]
 [ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_lr7js"]
 [ext_resource type="Script" path="res://scripts/UI/LevelSelect.cs" id="2_7yyc3"]
 [ext_resource type="FontFile" uid="uid://dioy2w6coivqu" path="res://other/tinypixel.otf" id="3_nb72f"]
@@ -74,6 +74,18 @@ theme_override_font_sizes/font_size = 150
 text = "4"
 script = ExtResource("1_lr7js")
 
+[node name="Level5" type="Button" parent="."]
+layout_mode = 0
+offset_left = -253.0
+offset_top = -5.0
+offset_right = -37.0
+offset_bottom = 205.0
+scale = Vector2(1.91915, 1.91915)
+theme_override_fonts/font = ExtResource("3_nb72f")
+theme_override_font_sizes/font_size = 150
+text = "5"
+script = ExtResource("1_lr7js")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = -870.0
@@ -88,3 +100,4 @@ label_settings = SubResource("LabelSettings_qcdkq")
 [connection signal="pressed" from="Level2" to="Level2" method="buttonPressed" binds= ["res://scenes/levels/Level2.tscn", 2]]
 [connection signal="pressed" from="Level3" to="Level3" method="buttonPressed" binds= ["res://scenes/levels/Level3.tscn", 3]]
 [connection signal="pressed" from="Level4" to="Level4" method="buttonPressed" binds= ["res://scenes/levels/Level4.tscn", 4]]
+[connection signal="pressed" from="Level5" to="Level5" method="buttonPressed" binds= ["res://scenes/levels/Level5.tscn", 5]]

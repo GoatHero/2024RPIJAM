@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=4 uid="uid://ccg4okwqdbp3n"]
+[gd_scene load_steps=18 format=4 uid="uid://ccg4okwqdbp3n"]
 
 [ext_resource type="Texture2D" uid="uid://be5hnxys0dalg" path="res://sprites/player/the_fellow_intro.png" id="1_jln6w"]
+[ext_resource type="Script" path="res://scripts/UI/IntroCutscene.cs" id="1_mrn6i"]
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="2_o2ui4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2oxta"]
@@ -119,6 +120,7 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(407, 245)
+script = ExtResource("1_mrn6i")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(134, -235)
@@ -137,3 +139,5 @@ tile_set = ExtResource("2_o2ui4")
 libraries = {
 "": SubResource("AnimationLibrary_of70l")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="onCutsceneEnd"]
