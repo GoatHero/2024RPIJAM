@@ -1,19 +1,42 @@
 using System;
+using Godot.Collections;
 using Godot;
 
 public partial class Narrator : BaseCharacterBodyEnemy {
+	[Export]
+	public Array<Area2D> areas { get; set; } = new();
+	[Export]
+	public Array<string> lines { get; set; } = new();
+	[Export]
+	public Array<string> times { get; set; } = new();
+
+	[Export]
+	public bool isStatic = false; 
+	public AnimatedSprite2D animatedSprite2D;
+	public Timer lineTimer;
+
+	// public override void _Ready() {
+	// 	animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	// 	lineTimer = GetNode<Timer>("Timer");
+	// 	for 
+	// }
+
 	public override void _PhysicsProcess(double delta) {
-		Vector2 dif = GlobalPosition - player.GlobalPosition;
-		Vector2 wantedDif = dif/dif.Length()*500;
-		if (Math.Abs(wantedDif.X) < Math.Abs(wantedDif.Y)) {
-			(wantedDif.X, wantedDif.Y) = (Math.Abs(wantedDif.Y) * Math.Sign(wantedDif.X), Math.Abs(wantedDif.X) * Math.Sign(wantedDif.Y));
+		if (!isStatic) {
+			Vector2 dif = GlobalPosition - player.GlobalPosition;
+			Vector2 wantedDif = dif/dif.Length()*500;
+			if (Math.Abs(wantedDif.X) < Math.Abs(wantedDif.Y)) {
+				(wantedDif.X, wantedDif.Y) = (Math.Abs(wantedDif.Y) * Math.Sign(wantedDif.X), Math.Abs(wantedDif.X) * Math.Sign(wantedDif.Y));
+			}
+			moveToPosition(player.GlobalPosition + wantedDif);
 		}
-		moveToPosition(player.GlobalPosition + wantedDif);
+		if (!animatedSprite2D.IsPlaying()) {
+			animatedSprite2D.Play();
+		}
 	}
 
     public void setDialogue(int line) {
         string lines = string.Empty;
-        Timer timer = GetNode<Timer>("Timer");
         switch(line) {
             case 0:
                 break;
@@ -47,8 +70,14 @@ public partial class Narrator : BaseCharacterBodyEnemy {
                 lines = string.Empty;
                 break;
         }
-        GetNode<Label>("AnimatedSprite2D/Label").Text = lines;
+        say(lines);
     }
+
+
+	public void say(string str, float time = -1) {
+		GetNode<Label>("AnimatedSprite2D/Label").Text = str;
+		lineTimer.Start(time);
+	}
 
     public void clearText() {
         setDialogue(-1);
