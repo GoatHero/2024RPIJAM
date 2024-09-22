@@ -16,9 +16,9 @@ public partial class TestGhostEnemy : BaseCharacterBodyEnemy
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		moveToPosition(player.Position);
+		moveToPosition(player.GlobalPosition);
 
-		if (canAttack && (player.Position - Position).Length() < attackRange) {
+		if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
 			attack(player);
 			addAttackCooldown();
 		}
