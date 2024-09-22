@@ -3,7 +3,7 @@ using Godot.Collections;
 using System;
 using System.Linq;
 
-public partial class BabyHead : BaseSnakeEnemy
+public partial class SnakeBossHead : BaseSnakeEnemy
 {
 	[Export]
 	public float attackDamage = 10;
@@ -16,7 +16,7 @@ public partial class BabyHead : BaseSnakeEnemy
 
 	public override void _Ready() {
 		base._Ready();
-		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBabyLink.tscn");
+		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBossLink.tscn");
 		makeSegments(linkPackedScene);
 	}
 

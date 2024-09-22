@@ -70,7 +70,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	}
 
 	public void addToSegment(RigidBody2D segment, PackedScene newSegmentPackedScene) {
-		RigidBody2D newSegment = newSegmentPackedScene.Instantiate<RigidBody2D>();
+		BaseSnakeLink newSegment = newSegmentPackedScene.Instantiate<BaseSnakeLink>();
 		segments.Add(newSegment);
 		
 		segment.AddSibling(newSegment);
@@ -81,7 +81,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 
 		back.NodeB = newSegment.GetPath();
 
-		setupNewSegment(newSegment);
+		newSegment.head = this;
 	}
 
 	public virtual Vector2 getPathToPos(Vector2 pos) {
@@ -89,6 +89,4 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		navAgent.TargetPosition = pos;
 		return navAgent.GetNextPathPosition();
 	}
-
-	public virtual void setupNewSegment(RigidBody2D newSegment) {}
 }

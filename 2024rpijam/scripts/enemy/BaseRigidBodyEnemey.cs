@@ -33,7 +33,6 @@ public partial class BaseRigidBodyEnemy : RigidBody2D, BaseEnemy
 	}
 
 	public virtual void damage(float amount, Vector2 knockback = new Vector2()) {
-		GD.Print(amount, " ", knockback);
 		changeHealth(amount);
 		ApplyCentralImpulse(knockback*50);
 	}

@@ -21,10 +21,5 @@ position = Vector2(-396, -356)
 [node name="World" parent="." instance=ExtResource("3_23j5b")]
 
 [node name="SnakeBaby" parent="." instance=ExtResource("5_0wx3l")]
-position = Vector2(-210, -56)
-attackDamage = 10.0
-attackKnockback = 10.0
-attackRange = 30.0
-size = 5
-health = 10.0
-maxHealth = 10.0
+position = Vector2(-248, -57)
+maxHealth = 30.0

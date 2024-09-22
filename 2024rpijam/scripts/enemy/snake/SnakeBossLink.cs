@@ -3,7 +3,7 @@ using Godot.Collections;
 using System;
 using System.Linq;
 
-public partial class BabyLink : BaseSnakeLink
+public partial class SnakeBossLink : BaseSnakeLink
 {
 	public override void _Ready() {
 		base._Ready();
@@ -21,10 +21,5 @@ public partial class BabyLink : BaseSnakeLink
 			vel = vel.Rotated(GlobalRotation);
 			ApplyImpulse(dt*vel);
 		}
-	}
-
-	public override void damage(float amount, Vector2 knockback = new Vector2()) {
-		ApplyCentralImpulse(knockback*50);
-		head.damage(amount);
 	}
 }

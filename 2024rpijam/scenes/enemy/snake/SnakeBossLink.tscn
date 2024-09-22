@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dar8bs6ib60y2"]
+
+[ext_resource type="Script" path="res://scripts/enemy/snake/SnakeBossLink.cs" id="1_casd6"]
+[ext_resource type="Texture2D" uid="uid://bumkm1w03kqf6" path="res://sprites/enemy/snake/babySnakeLink.png" id="1_wsvgv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wwik0"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgo2l"]
+radius = 15.0
+height = 50.0
+
+[node name="BabySnakeLink" type="RigidBody2D"]
+collision_layer = 24
+physics_material_override = SubResource("PhysicsMaterial_wwik0")
+gravity_scale = 0.0
+continuous_cd = 2
+linear_damp = 5.0
+script = ExtResource("1_casd6")
+
+[node name="BabySnakeLink" type="Sprite2D" parent="."]
+position = Vector2(5, -2.38419e-07)
+scale = Vector2(5, 5)
+texture = ExtResource("1_wsvgv")
+
+[node name="front" type="Node2D" parent="."]
+position = Vector2(-20, 0)
+
+[node name="back" type="PinJoint2D" parent="."]
+position = Vector2(20, 0)
+node_a = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_hgo2l")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

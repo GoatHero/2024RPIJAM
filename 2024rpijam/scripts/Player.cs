@@ -39,6 +39,7 @@ public partial class Player : CharacterBody2D
 	private Timer attackCooldownTimer;
 	private Timer dashCoolTimer;
 	private Camera2D camera;
+	private AnimationPlayer animationPlayer;
 	
 	public override void _Ready() {
 		base._Ready();
@@ -48,6 +49,7 @@ public partial class Player : CharacterBody2D
 		attackCooldownTimer = GetNode<Timer>("hitTimer");
 		dashCoolTimer = GetNode<Timer>("dashCoolTimer");
 		camera = GetNode<Camera2D>("camera");
+		animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -72,6 +74,8 @@ public partial class Player : CharacterBody2D
 		if (horizontalMovement != 0) {
 			isPressingHorizontalKey = true;
 			setDirection(horizontalMovement > 0);
+			if (!animationPlayer.IsPlaying() || animationPlayer.CurrentAnimation != "Run")
+				animationPlayer.Play("Run");
 			if (IsOnFloor()) {
 				velocity.X += dt * horizontalMovement * speed;
 			} else {
@@ -79,7 +83,10 @@ public partial class Player : CharacterBody2D
 					velocity.X += dt * horizontalMovement * airSpeed;
 				}
 			}
+		} else if (animationPlayer.CurrentAnimation == "Run") {
+			animationPlayer.Play("Reset");
 		}
+
 		//Handle Dash
 		if (Input.IsActionJustPressed("dash") && canDash) {
 			velocity.X += horizontalMovement * dashSpeed;
@@ -111,6 +118,7 @@ public partial class Player : CharacterBody2D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump")) {
 			if (IsOnFloor()) {
+				animationPlayer.Play("Jump");
 				velocity.Y = jumpVelocity;
 			} else if (wallBoxL.HasOverlappingBodies()) {
 				velocity.X = wallJumpVelocity;
