@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://cneqb06iijevw"]
 
-[ext_resource type="Script" path="res://scripts/enemy/snake/SnakeLink.cs" id="1_o0xlt"]
+[ext_resource type="Script" path="res://scripts/enemy/snake/BabyLink.cs" id="1_l8bfc"]
 [ext_resource type="Texture2D" uid="uid://bumkm1w03kqf6" path="res://sprites/enemy/snake/babySnakeLink.png" id="1_wsvgv"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_wwik0"]
-friction = 0.2
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hgo2l"]
 radius = 15.0
@@ -15,8 +15,8 @@ collision_layer = 24
 physics_material_override = SubResource("PhysicsMaterial_wwik0")
 gravity_scale = 0.0
 continuous_cd = 2
-linear_damp = 10.0
-script = ExtResource("1_o0xlt")
+linear_damp = 5.0
+script = ExtResource("1_l8bfc")
 speed = null
 health = null
 maxHealth = null
@@ -37,3 +37,7 @@ node_a = NodePath("..")
 visible = false
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_hgo2l")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

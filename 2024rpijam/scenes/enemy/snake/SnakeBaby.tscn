@@ -1,30 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmxtos37a3i2v"]
+[gd_scene load_steps=6 format=3 uid="uid://cmxtos37a3i2v"]
 
 [ext_resource type="Script" path="res://scripts/enemy/snake/BabyHead.cs" id="1_k3gmn"]
 [ext_resource type="Texture2D" uid="uid://buev2dp3b546q" path="res://sprites/enemy/snake/babySnakeHead.png" id="1_p4gmj"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2lnah"]
-friction = 0.4
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
 radius = 15.0
 height = 50.0
 
-[node name="SnakeBaby" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6bhsa"]
+radius = 13.0384
+
+[node name="SnakeBaby" type="RigidBody2D" node_paths=PackedStringArray("leftWallTrig", "rightWallTrig")]
+position = Vector2(0, 1)
+rotation = -0.000641442
 collision_layer = 24
 physics_material_override = SubResource("PhysicsMaterial_2lnah")
 gravity_scale = 0.0
+sleeping = true
+can_sleep = false
 continuous_cd = 2
 linear_damp = 10.0
-angular_damp = 5.0
 script = ExtResource("1_k3gmn")
-size = 1
-rotationSpeed = 10
+attackDamage = null
+attackKnockback = null
+attackRange = null
+size = null
+rotationSpeed = 2000
+leftWallTrig = NodePath("LeftWallTrig")
+rightWallTrig = NodePath("RightWallTrig")
+speed = 2000.0
+health = null
+maxHealth = null
 
 [node name="BabySnakeHead" type="Sprite2D" parent="."]
 position = Vector2(5, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("1_p4gmj")
+metadata/_edit_lock_ = true
 
 [node name="back" type="PinJoint2D" parent="."]
 position = Vector2(20, 0)
@@ -39,5 +54,25 @@ shape = SubResource("CapsuleShape2D_puy71")
 avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="LeftWallTrig" type="Area2D" parent="."]
+visible = false
+position = Vector2(-30.0096, 14.9808)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWallTrig"]
+rotation = 1.57079
+shape = SubResource("CircleShape2D_6bhsa")
+metadata/_edit_lock_ = true
+
+[node name="RightWallTrig" type="Area2D" parent="."]
+visible = false
+position = Vector2(-29.9904, -15.0192)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWallTrig"]
+rotation = 1.57079
+shape = SubResource("CircleShape2D_6bhsa")
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]

@@ -8,29 +8,43 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	[Export]
 	public int size = 5;
 	[Export]
-	public int rotationSpeed = 50;
+	public int rotationSpeed = 500;
 
-	private NavigationAgent2D navAgent;
-	private Array<RigidBody2D> segments = new();
-	private PackedScene linkPackedScene;
+	[Export]
+	protected Area2D leftWallTrig;
+	[Export]
+	protected Area2D rightWallTrig;
+
+	protected NavigationAgent2D navAgent;
+	protected Array<RigidBody2D> segments = new();
 
 
 	public override void _Ready() {
 		base._Ready();
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
-		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBabyLink.tscn");
 		segments.Add(this);
-		CallDeferred("makeSegments");
 	}
 
 	public override bool moveToPosition(Vector2 pos) {
 		float dt = (float)GetPhysicsProcessDeltaTime();
 
-		ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
+		bool l = leftWallTrig.HasOverlappingBodies();
+		bool r = rightWallTrig.HasOverlappingBodies();
+		if (l && r) {
+			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
+		} else if (l) {
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.25f*(float)Math.PI)*speed*segments.Count);
+		} else if (r) {
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.25f*(float)Math.PI)*speed*segments.Count);
+		} else {
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
+		}
 
 		Vector2 direction = pos - GlobalPosition;
 		
 		if (direction.Length() > 0f) {
+			ApplyCentralImpulse(dt*direction/direction.Length()*speed*segments.Count*0.1f);
+
 			float at = direction.Angle()-GlobalRotation+(float)Math.PI;
 			
 			while (at > Math.PI) {
@@ -39,16 +53,19 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 			while (at < -Math.PI) {
 				at += (float)Math.PI*2f;
 			}
-			GD.Print(dt*at*rotationSpeed*180f/(float)Math.PI);
-			ApplyTorqueImpulse(dt*at*rotationSpeed);
+			ApplyTorqueImpulse(dt*at*rotationSpeed*segments.Count);
 		}
 
 		return direction.Length() <= 0.01;
 	}
 
-	public void makeSegments() {
+	public void makeSegments(PackedScene linkScene) {
+		CallDeferred("makeSegments_", linkScene);
+	}
+
+	private void makeSegments_(PackedScene linkScene) {
 		while (size > segments.Count) {
-			addToSegment(segments.Last(), linkPackedScene);
+			addToSegment(segments.Last(), linkScene);
 		}
 	}
 
@@ -63,6 +80,8 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		newSegment.GlobalPosition += back.GlobalPosition - front.GlobalPosition;
 
 		back.NodeB = newSegment.GetPath();
+
+		setupNewSegment(newSegment);
 	}
 
 	public virtual Vector2 getPathToPos(Vector2 pos) {
@@ -70,4 +89,6 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		navAgent.TargetPosition = pos;
 		return navAgent.GetNextPathPosition();
 	}
+
+	public virtual void setupNewSegment(RigidBody2D newSegment) {}
 }

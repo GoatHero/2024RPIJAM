@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://opg6o12fn0h8"]
+[gd_scene load_steps=8 format=3 uid="uid://opg6o12fn0h8"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
 [ext_resource type="Texture2D" uid="uid://s5qi7c11dq8i" path="res://sprites/the_fellow.png" id="2_iqj2m"]
 [ext_resource type="PackedScene" uid="uid://bigo0ycn36e4o" path="res://scenes/UI/HealthNumber.tscn" id="3_8ndyp"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="4_h8oin"]
-[ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/UI/HealthBar.tscn" id="5_13q3s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhci7"]
 size = Vector2(15, 28)
@@ -13,7 +12,7 @@ size = Vector2(15, 28)
 radius = 38.2099
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7pwq"]
-size = Vector2(8, 80)
+size = Vector2(17, 80)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
@@ -51,29 +50,31 @@ grow_vertical = 2
 layout_mode = 0
 player = NodePath("../../..")
 
-[node name="HealthBar" parent="camera/Control" node_paths=PackedStringArray("player") instance=ExtResource("5_13q3s")]
-position = Vector2(271, 92)
-scale = Vector2(38, 38)
-player = NodePath("../../..")
-
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
 position = Vector2(47, -26)
 shape = SubResource("CircleShape2D_2a8op")
 
-[node name="hit" type="Sprite2D" parent="hitbox"]
+[node name="hit" type="Sprite2D" parent="hitBox"]
 position = Vector2(48.5, -25.25)
 scale = Vector2(0.476563, 0.433594)
 texture = ExtResource("4_h8oin")
 
-[node name="wallBox" type="Area2D" parent="."]
+[node name="wallBoxL" type="Area2D" parent="."]
+position = Vector2(-30, 0)
 collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="wallBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallBoxL"]
+shape = SubResource("RectangleShape2D_h7pwq")
+
+[node name="wallBoxR" type="Area2D" parent="."]
 position = Vector2(30, 0)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wallBoxR"]
 shape = SubResource("RectangleShape2D_h7pwq")
 
 [node name="hitTimer" type="Timer" parent="."]

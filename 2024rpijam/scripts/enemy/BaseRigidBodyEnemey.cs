@@ -16,7 +16,6 @@ public partial class BaseRigidBodyEnemy : RigidBody2D, BaseEnemy
 	protected Timer timer;
 
 	public override void _Ready() {
-		base._Ready();
 		player = GetTree().Root.GetNode<Player>("root/Player");
 		timer = GetNode<Timer>("AttackCooldown");
 	}
@@ -34,6 +33,7 @@ public partial class BaseRigidBodyEnemy : RigidBody2D, BaseEnemy
 	}
 
 	public virtual void damage(float amount, Vector2 knockback = new Vector2()) {
+		GD.Print(amount, " ", knockback);
 		changeHealth(amount);
 		ApplyCentralImpulse(knockback*50);
 	}

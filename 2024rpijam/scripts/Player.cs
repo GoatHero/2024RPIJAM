@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+
 	[Export]
 	public float fallMulti = 1.5f;
 	[Export]
@@ -32,51 +33,55 @@ public partial class Player : CharacterBody2D
 	private bool canDash = false;
 	
 	
-	private Area2D hitbox;
-	private Area2D wallbox;
+	private Area2D hitBox;
+	private Area2D wallBoxL;
+	private Area2D wallBoxR;
 	private Timer attackCooldownTimer;
 	private Timer dashCoolTimer;
 	private Camera2D camera;
 	
-	public override void _Ready(){
+	public override void _Ready() {
 		base._Ready();
-		hitbox = GetNode<Area2D>("hitbox");
-		wallbox = GetNode<Area2D>("wallBox");
+		hitBox = GetNode<Area2D>("hitBox");
+		wallBoxL = GetNode<Area2D>("wallBoxL");
+		wallBoxR = GetNode<Area2D>("wallBoxR");
 		attackCooldownTimer = GetNode<Timer>("hitTimer");
 		dashCoolTimer = GetNode<Timer>("dashCoolTimer");
 		camera = GetNode<Camera2D>("camera");
 	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		float dt = (float)delta;
 		Vector2 velocity = Velocity;
 		
 		//Handle Attack 
-		if (Input.IsActionJustPressed("attack") && canAttack){
-			foreach(Node2D nodeH in hitbox.GetOverlappingBodies()){
-				if(nodeH is BaseEnemy){
-					BaseEnemy be = nodeH as BaseEnemy;
-					be.damage(attackDamage);
-					addAttackCooldown();
+		if (Input.IsActionJustPressed("attack") && canAttack) {
+			foreach(Node2D node in hitBox.GetOverlappingBodies()) {
+				if (node is BaseEnemy) {
+					(node as BaseEnemy).damage(attackDamage);	
 				}
 			}
+			addAttackCooldown();
 		}
 		
 		
+		bool isPressingHorizontalKey = false;
 		// Get the input direction and handle the movement/deceleration.
 		float horizontalMovement = Input.GetAxis("move_left", "move_right");
 		if (horizontalMovement != 0) {
+			isPressingHorizontalKey = true;
 			setDirection(horizontalMovement > 0);
-			if(IsOnFloor()) {
+			if (IsOnFloor()) {
 				velocity.X += dt * horizontalMovement * speed;
 			} else {
-				if(horizontalMovement * speed < velocity.X || velocity.X < horizontalMovement * speed) {
+				if (horizontalMovement * speed < velocity.X || velocity.X < horizontalMovement * speed) {
 					velocity.X += dt * horizontalMovement * airSpeed;
 				}
 			}
 		}
 		//Handle Dash
-		if(Input.IsActionJustPressed("dash") && canDash){
+		if (Input.IsActionJustPressed("dash") && canDash) {
 			velocity.X += horizontalMovement * dashSpeed;
 			velocity.Y = 0f;
 			dashCoolTimer.Start(0.01f);
@@ -92,8 +97,13 @@ public partial class Player : CharacterBody2D
 				velocity += dt * GetGravity() * fallMulti * airPoundMulti;
 			velocity += dt * GetGravity() * fallMulti;
 		}
-		if(wallbox.GetOverlappingBodies().Count > 0){
-			if((velocity.X > 0 && rightFacing) || (velocity.X < 0 && !rightFacing)){
+		if (wallBoxR.HasOverlappingBodies()) {
+			if (velocity.X > 0) {
+				velocity.X = 0;
+			}
+		}
+		if (wallBoxL.HasOverlappingBodies()) {
+			if (velocity.X < 0) {
 				velocity.X = 0;
 			}
 		}
@@ -102,27 +112,33 @@ public partial class Player : CharacterBody2D
 		if (Input.IsActionJustPressed("jump")) {
 			if (IsOnFloor()) {
 				velocity.Y = jumpVelocity;
-			} else if(wallbox.GetOverlappingBodies().Count > 0) {
-				float scaleX = rightFacing ? -1f : 1f;
-				velocity.X += scaleX * wallJumpVelocity;
+			} else if (wallBoxL.HasOverlappingBodies()) {
+				velocity.X = wallJumpVelocity;
 				velocity.Y = jumpVelocity;
-				setDirection(!rightFacing);
-			} else if(velocity.Y < 0){
+				if (!isPressingHorizontalKey) setDirection(true);
+			} else if (wallBoxR.HasOverlappingBodies()) {
+				velocity.X = -wallJumpVelocity;
+				velocity.Y = jumpVelocity;
+				if (!isPressingHorizontalKey) setDirection(false);
+			} else if (velocity.Y < 0) {
 				velocity.Y += jumpVelocity * 0.015f;
 			}
 		}
-
-		if(IsOnFloor())
+		
+		if (IsOnFloor())
 			canDash = true;
+
 		Velocity = velocity;
 		MoveAndSlide();
 	}
 
-	public void setDirection(bool right){
+	public void setDirection(bool right) {
 		float scale = right ? 1 : -1;
 		Scale = new Vector2(1f, scale);
 		RotationDegrees = right ? 0 : 180;
 		camera.Scale = new Vector2(scale, 1f);
+		if (right != (wallBoxL.Position.X < wallBoxR.Position.X))
+			(wallBoxL.Position, wallBoxR.Position) = (wallBoxR.Position, wallBoxL.Position);
 		rightFacing = right;
 	}
 	
@@ -151,7 +167,7 @@ public partial class Player : CharacterBody2D
 	public void resetAttackCooldown() {
 		canAttack = true;
 	}
-	public void resetDash(){
+	public void resetDash() {
 		Velocity = new Vector2(Velocity.X > 0 ? speed * 0.6f: -speed * 0.6f, 0);
 	}
 }
