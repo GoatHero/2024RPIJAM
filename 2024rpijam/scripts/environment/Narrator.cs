@@ -87,8 +87,8 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 		animatedSprite2D.Play();
 	}
 
-    public void clearText() {
-        setDialogue(-1);
+	public void clearText() {
+		setDialogue(-1);
 		animatedSprite2D.Stop();
-    }
+	}
 }

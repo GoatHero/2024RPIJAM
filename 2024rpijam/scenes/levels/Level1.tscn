@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_tboeh"]
 [ext_resource type="PackedScene" uid="uid://skt4c2k6odmv" path="res://scenes/world stuff/door.tscn" id="4_y0s3y"]
 
-[node name="root" type="Node2D"]
+[node name="root2" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 
@@ -52,6 +52,14 @@ offset_bottom = 1759.0
 theme_override_font_sizes/normal_font_size = 50
 text = "Press Space To Wall Jump"
 
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+offset_left = 1841.0
+offset_top = -793.0
+offset_right = 2357.0
+offset_bottom = -152.0
+theme_override_font_sizes/normal_font_size = 50
+text = "Get To Door To Complete Level"
+
 [node name="Door" parent="." instance=ExtResource("4_y0s3y")]
 position = Vector2(2070, -400)
 
@@ -65,4 +73,8 @@ isStatic = true
 
 [node name="Nar3" parent="." instance=ExtResource("3_tboeh")]
 position = Vector2(-124, -673)
+isStatic = true
+
+[node name="Nar4" parent="." instance=ExtResource("3_tboeh")]
+position = Vector2(1782, -751)
 isStatic = true
