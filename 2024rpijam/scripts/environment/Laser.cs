@@ -20,7 +20,6 @@ public partial class Laser : Node2D {
 
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta) {
 		setUp();
 		foreach(Node2D node in hitBox.GetOverlappingBodies()){
