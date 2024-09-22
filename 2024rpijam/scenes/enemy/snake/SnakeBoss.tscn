@@ -11,8 +11,8 @@ friction = 0.0
 load_path = "res://.godot/imported/BossSnake.png-d0f4b883b5d22e66e473e3e5030c30d0.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_puy71"]
-radius = 15.0
-height = 50.0
+radius = 21.0
+height = 58.0026
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6bhsa"]
 radius = 13.0384
@@ -42,7 +42,6 @@ texture = SubResource("CompressedTexture2D_xmhw7")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_puy71")
 
@@ -91,7 +90,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackBox"]
-position = Vector2(-28.9994, -1.0186)
+position = Vector2(-28.999, 0)
 shape = SubResource("CircleShape2D_8orav")
 
 [connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]
