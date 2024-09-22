@@ -34,3 +34,4 @@ size = 20
 [node name="SnakeBoss" parent="." instance=ExtResource("6_42a4s")]
 position = Vector2(-1097, -728)
 size = 30
+rotationSpeed = 4000.0

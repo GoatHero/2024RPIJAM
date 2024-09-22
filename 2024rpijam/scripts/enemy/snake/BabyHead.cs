@@ -14,11 +14,13 @@ public partial class BabyHead : BaseSnakeEnemy
 
 	protected Sprite2D sprite;
 	protected PackedScene linkPackedScene;
+	protected Area2D attackBox;
 
 	public override void _Ready() {
 		base._Ready();
 		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBaby.tscn");
 		sprite = GetNode<Sprite2D>("Sprite");
+		attackBox = GetNode<Area2D>("attackBox");
 		makeSegments(linkPackedScene);
 	}
 
@@ -31,7 +33,7 @@ public partial class BabyHead : BaseSnakeEnemy
 			
 			moveToPosition(getPathToPos(player.GlobalPosition));		
 
-			if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+			if (canAttack && attackBox.HasOverlappingAreas()) {
 				attack(player);
 				addAttackCooldown();
 			}

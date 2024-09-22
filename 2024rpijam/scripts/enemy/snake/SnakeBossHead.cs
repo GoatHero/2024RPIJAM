@@ -14,11 +14,13 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 
 	protected Sprite2D sprite;
 	protected PackedScene headPackedScene;
+	protected Area2D attackBox;
 
 	public override void _Ready() {
 		base._Ready();
 		headPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBoss.tscn");
 		sprite = GetNode<Sprite2D>("Sprite");
+		attackBox = GetNode<Area2D>("attackBox");
 		makeSegments(headPackedScene);
 	}
 
@@ -32,7 +34,7 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 
 			moveToPosition(getPathToPos(player.GlobalPosition));		
 
-			if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+			if (canAttack && attackBox.HasOverlappingAreas()) {
 				attack(player);
 				addAttackCooldown();
 			}
