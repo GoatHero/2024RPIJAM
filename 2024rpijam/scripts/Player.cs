@@ -3,29 +3,29 @@ using Godot;
 
 public partial class Player : CharacterBody2D {
 
-    [Export]
-    public float fallMulti = 1.5f;
-    [Export]
-    public float dashSpeed = 4800.0f;
-    [Export]
-    public float speed = 2800.0f;
-    [Export]
-    public float airSpeed = 1000.0f;
-    [Export]
-    public float jumpVelocity = -600.0f;
-    [Export]
-    public float wallJumpVelocity = 750.0f;
-    [Export]
-    public float airPoundMulti = 3f;
+	[Export]
+	public float fallMulti = 1.5f;
+	[Export]
+	public float dashSpeed = 4800.0f;
+	[Export]
+	public float speed = 2800.0f;
+	[Export]
+	public float airSpeed = 1000.0f;
+	[Export]
+	public float jumpVelocity = -600.0f;
+	[Export]
+	public float wallJumpVelocity = 750.0f;
+	[Export]
+	public float airPoundMulti = 3f;
 
-    [Export]
-    public float health = 100;
-    [Export]
-    public float maxHealth = 100;
-    [Export]
-    public float attackDamage = 5f;
-    [Export]
-    public float attackCooldown = 0.6f;
+	[Export]
+	public float health = 100;
+	[Export]
+	public float maxHealth = 100;
+	[Export]
+	public float attackDamage = 5f;
+	[Export]
+	public float attackCooldown = 0.6f;
 
     public bool canAttack = true;
     private bool rightFacing = true;
@@ -209,14 +209,14 @@ public partial class Player : CharacterBody2D {
         }
     }
 
-    public virtual void kill() {
-        GD.Print("Dead");
-    }
+	public virtual void kill() {
+		GD.Print("Dead");
+	}
 
-    public void addAttackCooldown(float amount = -1f) {
-        attackCooldownTimer.Start((double)amount);
-        canAttack = false;
-    }
+	public void addAttackCooldown(float amount = -1f) {
+		attackCooldownTimer.Start((double)amount);
+		canAttack = false;
+	}
 
     public void resetAttackCooldown() {
         canAttack = true;

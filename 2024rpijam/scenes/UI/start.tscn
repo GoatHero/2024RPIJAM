@@ -1,42 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dgsvjc0rej3c6"]
+[gd_scene load_steps=5 format=3 uid="uid://dgsvjc0rej3c6"]
 
+[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_jh35s"]
 [ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_l32wh"]
 [ext_resource type="Script" path="res://scripts/UI/ExitButton.cs" id="2_mn3ai"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwcc5"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5uwo5"]
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2o8x"]
-border_width_bottom = 5
-border_color = Color(0.45, 0.45, 0.45, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-shadow_color = Color(0.16, 0.16, 0.16, 0.552941)
-shadow_size = 2
-shadow_offset = Vector2(0, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uomcr"]
-bg_color = Color(0.54, 0.54, 0.54, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-anti_aliasing = false
-
-[sub_resource type="Theme" id="Theme_3vtdd"]
-Button/styles/focus = SubResource("StyleBoxEmpty_xwcc5")
-Button/styles/hover = SubResource("StyleBoxFlat_5uwo5")
-Button/styles/normal = SubResource("StyleBoxFlat_x2o8x")
-Button/styles/pressed = SubResource("StyleBoxFlat_uomcr")
 
 [sub_resource type="SystemFont" id="SystemFont_berc4"]
 subpixel_positioning = 0
@@ -51,7 +17,7 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = 576.0
 offset_bottom = 324.0
-theme = SubResource("Theme_3vtdd")
+theme = ExtResource("1_jh35s")
 script = ExtResource("1_l32wh")
 
 [node name="Camera2D" type="Camera2D" parent="."]

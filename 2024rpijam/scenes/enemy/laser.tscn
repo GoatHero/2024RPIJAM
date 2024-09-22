@@ -65,12 +65,11 @@ width = 8.0
 texture = ExtResource("3_0fj1l")
 texture_mode = 2
 joint_mode = 2
-begin_cap_mode = 1
 end_cap_mode = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Line2D"]
 position = Vector2(116, 0)
-amount = 30
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_b6gvv")
 lifetime = 2.0
 explosiveness = 0.08
