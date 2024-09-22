@@ -5,7 +5,7 @@ using System;
 public partial class LevelSelect : Control
 {
 	[Export]
-	public int levelCount = 4;
+	public int levelCount = 5;
 	
 	public override void _Ready(){
 		GlobalData g = (GlobalData)(GetTree().Root.GetNode("GlobalData"));

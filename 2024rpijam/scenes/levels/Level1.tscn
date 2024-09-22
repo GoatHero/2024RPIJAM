@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_tboeh"]
 [ext_resource type="PackedScene" uid="uid://bmxhjoknswvur" path="res://scenes/world stuff/door.tscn" id="4_y0s3y"]
 
-[node name="root2" type="Node2D"]
+[node name="root" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 
@@ -25,17 +25,6 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("2_pdif2")]
 position = Vector2(-4170, 1538)
 safe_margin = 0.15
-fallMulti = null
-dashSpeed = null
-speed = null
-airSpeed = null
-jumpVelocity = null
-wallJumpVelocity = null
-airPoundMulti = null
-health = null
-maxHealth = null
-attackDamage = null
-attackCooldown = null
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = -62.0
