@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b017dbtga02x5"
-path="res://.godot/imported/the_fellow_jump.png-1df6bad77145752bfb127936f2c07816.ctex"
+uid="uid://csekiapduf3kh"
+path="res://.godot/imported/the_fellow_slash.png-c67436abcceccaedd20800d139dad091.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/the_fellow_jump.png"
-dest_files=["res://.godot/imported/the_fellow_jump.png-1df6bad77145752bfb127936f2c07816.ctex"]
+source_file="res://sprites/player/the_fellow_slash.png"
+dest_files=["res://.godot/imported/the_fellow_slash.png-c67436abcceccaedd20800d139dad091.ctex"]
 
 [params]
 

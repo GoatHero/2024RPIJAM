@@ -10,7 +10,7 @@ public partial class ExitButton : Button
 			GetTree().Quit();
 		}
 	}
-	public void ButtonPressed(){
+	public void buttonPressed(){
 		GetTree().Quit();
 	}
 }

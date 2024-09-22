@@ -59,11 +59,19 @@ public partial class Player : CharacterBody2D
 		
 		//Handle Attack 
 		if (Input.IsActionJustPressed("attack") && canAttack) {
+			Node2D closest = null;
 			foreach(Node2D node in hitBox.GetOverlappingBodies()) {
-				if (node is BaseEnemy) {
-					(node as BaseEnemy).damage(attackDamage);	
+				if (IsInstanceValid(node) && node is BaseEnemy) {
+					if (
+						closest == null ||
+						(closest.GlobalPosition - GlobalPosition) > (node.GlobalPosition - GlobalPosition)
+					) {
+						closest = node;
+					}
 				}
 			}
+			if (closest != null)
+				(closest as BaseEnemy).damage(attackDamage);
 			addAttackCooldown();
 		}
 		

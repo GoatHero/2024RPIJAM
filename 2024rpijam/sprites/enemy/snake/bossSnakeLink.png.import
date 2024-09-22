@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csekiapduf3kh"
-path="res://.godot/imported/the_fellow_slash.png-5463855f753c600fc36b4926e6d08439.ctex"
+uid="uid://coibhb72f3nv3"
+path="res://.godot/imported/bossSnakeLink.png-5d700b7fcb09875638f3fe97a9c3d264.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/the_fellow_slash.png"
-dest_files=["res://.godot/imported/the_fellow_slash.png-5463855f753c600fc36b4926e6d08439.ctex"]
+source_file="res://sprites/enemy/snake/bossSnakeLink.png"
+dest_files=["res://.godot/imported/bossSnakeLink.png-5d700b7fcb09875638f3fe97a9c3d264.ctex"]
 
 [params]
 

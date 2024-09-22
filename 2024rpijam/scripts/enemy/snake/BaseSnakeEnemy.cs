@@ -18,7 +18,6 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	protected NavigationAgent2D navAgent;
 	protected Array<RigidBody2D> segments = new();
 
-
 	public override void _Ready() {
 		base._Ready();
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
@@ -33,9 +32,9 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		if (l && r) {
 			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
 		} else if (l) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.25f*(float)Math.PI)*speed*segments.Count);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*speed*segments.Count);
 		} else if (r) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.25f*(float)Math.PI)*speed*segments.Count);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*speed*segments.Count);
 		} else {
 			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*segments.Count);
 		}
@@ -59,6 +58,17 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		return direction.Length() <= 0.01;
 	}
 
+	public virtual void removeSegment(BaseSnakeLink segment) {
+		int loc = segments.BinarySearch(segment);
+		if (loc < 0) return;
+		for (int i = segments.Count-1; i >= loc; i--) {
+			if (segments[i] is BaseSnakeLink) {
+				(segments[i] as BaseSnakeLink).head = null;
+			}
+			segments.RemoveAt(i);
+		}
+	}
+
 	public void makeSegments(PackedScene linkScene) {
 		CallDeferred("makeSegments_", linkScene);
 	}
@@ -74,6 +84,8 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		segments.Add(newSegment);
 		
 		segment.AddSibling(newSegment);
+		GetParent().MoveChild(newSegment, segment.GetIndex());
+		
 
 		Node2D front = newSegment.GetNode<Node2D>("front");
 		PinJoint2D back = segment.GetNode<PinJoint2D>("back");
@@ -88,5 +100,26 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		if (Engine.GetPhysicsFrames() < 2) return GlobalPosition;
 		navAgent.TargetPosition = pos;
 		return navAgent.GetNextPathPosition();
+	}
+
+	public virtual void scanForSegments() {
+		segments.Clear();
+		segments.Add(this);
+		BaseSnakeLink link = getBackNode();
+		while (link != null) {
+			segments.Add(link);
+			link.head = this;
+			link = link.getBackNode();
+		}
+	}
+
+	public virtual BaseSnakeLink getBackNode() {
+		PinJoint2D back = GetNode<PinJoint2D>("back");
+		if (back.NodeB == null) return null;
+	
+		Node node = GetNodeOrNull(back.NodeB);
+		if (node is not BaseSnakeLink) return null;
+		
+		return node as BaseSnakeLink;
 	}
 }

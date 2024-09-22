@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gjahicv0fbmc"
-path="res://.godot/imported/the_fellow_wall_kick.png-ca3ac0212469167537c1c1d24efc7c77.ctex"
+uid="uid://b017dbtga02x5"
+path="res://.godot/imported/the_fellow_jump.png-ddb35edfd2e4f243d94b8ca642ab217e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/the_fellow_wall_kick.png"
-dest_files=["res://.godot/imported/the_fellow_wall_kick.png-ca3ac0212469167537c1c1d24efc7c77.ctex"]
+source_file="res://sprites/player/the_fellow_jump.png"
+dest_files=["res://.godot/imported/the_fellow_jump.png-ddb35edfd2e4f243d94b8ca642ab217e.ctex"]
 
 [params]
 

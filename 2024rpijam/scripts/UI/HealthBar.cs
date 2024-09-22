@@ -7,6 +7,10 @@ public partial class HealthBar : Sprite2D
 	protected Player player;
 	[Export]
 	protected Node2D enemy;
+
+	[Export]
+	protected bool hideWhenFull = false;
+
 	protected BaseEnemy enemy_;
 
 	public override void _Ready()
@@ -37,10 +41,28 @@ public partial class HealthBar : Sprite2D
 
 	public override void _Process(double delta)
 	{
-		if (player != null) {
-			Frame = (int)(player.health / player.maxHealth * 12);
-		} else if (enemy != null) {
-			Frame = (int)(enemy_.getHealth() / enemy_.getMaxHealth() * 12);
+		if (hideWhenFull && getHealth() == getMaxHealth())
+			Visible = false;
+		else {
+			Visible = true;
+			Frame = Math.Clamp((int)(getHealth() / getMaxHealth() * 12f), 0, Hframes*Vframes-1);
 		}
+		
+	}
+
+	public virtual float getHealth() {
+		if (player != null)
+			return player.health;
+		if (enemy != null)
+			return enemy_.getHealth();
+		return 0f;
+	}
+
+	public virtual float getMaxHealth() {
+		if (player != null)
+			return player.maxHealth;
+		if (enemy != null)
+			return enemy_.getMaxHealth();
+		return 0f;
 	}
 }

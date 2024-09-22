@@ -5,21 +5,23 @@ using System.Linq;
 
 public partial class SnakeBossLink : BaseSnakeLink
 {
+	private PackedScene headPackedScene;
+
 	public override void _Ready() {
 		base._Ready();
+		headPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBoss.tscn");
 	}
 
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
+	}
 
-		float dt = (float)delta;
-
-		Vector2 vel = LinearVelocity.Rotated(-GlobalRotation);
-		vel.X = 0;
-		if (vel.Length() > 0) {
-			vel.Y *= -10f;
-			vel = vel.Rotated(GlobalRotation);
-			ApplyImpulse(dt*vel);
-		}
+	public override void kill() {
+		head?.removeSegment(this);
+		
+		BaseSnakeLink baseSnakeLink = getBackNode();
+		baseSnakeLink?.makeHead(headPackedScene);
+		
+		QueueFree();
 	}
 }

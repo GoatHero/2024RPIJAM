@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqb1pb8ljjdrb"
-path="res://.godot/imported/healthbar.png-f646f0e8afb30e7f8771bc3ae7acfbb2.ctex"
+uid="uid://3mugagfpq25w"
+path="res://.godot/imported/the_fellow_dash.png-6b57472a787c12837ddd841d4242212d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/healthbar.png"
-dest_files=["res://.godot/imported/healthbar.png-f646f0e8afb30e7f8771bc3ae7acfbb2.ctex"]
+source_file="res://sprites/player/the_fellow_dash.png"
+dest_files=["res://.godot/imported/the_fellow_dash.png-6b57472a787c12837ddd841d4242212d.ctex"]
 
 [params]
 

@@ -84,5 +84,5 @@ tooltip_text = "
 text = "Exit"
 script = ExtResource("2_mn3ai")
 
-[connection signal="button_down" from="Start" to="." method="ButtonPressed" binds= ["res://scenes/root.tscn"]]
-[connection signal="button_down" from="Exit" to="Exit" method="ButtonPressed"]
+[connection signal="pressed" from="Start" to="Start" method="buttonPressed" binds= ["res://scenes/root.tscn"]]
+[connection signal="pressed" from="Exit" to="Exit" method="buttonPressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbygj12vels8r"
-path="res://.godot/imported/Spikes.png-74291f56ae13d23045f77f35df84afea.ctex"
+uid="uid://c42upx1qdddpi"
+path="res://.godot/imported/bossSnakeHead.png-93844a1678308e472ad923fa1c1f51ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/Spikes.png"
-dest_files=["res://.godot/imported/Spikes.png-74291f56ae13d23045f77f35df84afea.ctex"]
+source_file="res://sprites/enemy/snake/bossSnakeHead.png"
+dest_files=["res://.godot/imported/bossSnakeHead.png-93844a1678308e472ad923fa1c1f51ec.ctex"]
 
 [params]
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://dgkhwglrtja18"]
 
-[ext_resource type="Texture2D" uid="uid://bxkh44vvddwt6" path="res://sprites/laser_emmiter.png" id="1_h56tg"]
+[ext_resource type="Texture2D" uid="uid://bxkh44vvddwt6" path="res://sprites/world/laser_emmiter.png" id="1_h56tg"]
 [ext_resource type="Script" path="res://scenes/enemy/Laser.cs" id="1_pme8m"]
 [ext_resource type="Shader" path="res://scenes/enemy/laser.gdshader" id="2_7iydj"]
-[ext_resource type="Texture2D" uid="uid://cr5odpc5246ao" path="res://sprites/Laser.png" id="3_0fj1l"]
+[ext_resource type="Texture2D" uid="uid://cr5odpc5246ao" path="res://sprites/enemy/Laser.png" id="3_0fj1l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0hu38"]
 shader = ExtResource("2_7iydj")

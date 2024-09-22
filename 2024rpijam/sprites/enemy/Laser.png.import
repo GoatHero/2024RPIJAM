@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkh44vvddwt6"
-path="res://.godot/imported/laser_emmiter.png-91e9db3fbd7279fe473897393846ed1e.ctex"
+uid="uid://cr5odpc5246ao"
+path="res://.godot/imported/Laser.png-87a387c334aa8c9e1415fd5257b3ebe3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/laser_emmiter.png"
-dest_files=["res://.godot/imported/laser_emmiter.png-91e9db3fbd7279fe473897393846ed1e.ctex"]
+source_file="res://sprites/enemy/Laser.png"
+dest_files=["res://.godot/imported/Laser.png-87a387c334aa8c9e1415fd5257b3ebe3.ctex"]
 
 [params]
 

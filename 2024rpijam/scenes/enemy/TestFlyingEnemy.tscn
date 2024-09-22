@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://birj5av8ex727"]
 
 [ext_resource type="Script" path="res://scripts/enemy/TestFlyingEnemy.cs" id="1_e5r3t"]
-[ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="2_bsyy6"]
+[ext_resource type="Texture2D" uid="uid://7y5g1fbk7xw0" path="res://sprites/enemy/Spider.png" id="2_gcr5g"]
 [ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/UI/HealthBar.tscn" id="3_s4pjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
@@ -13,7 +13,9 @@ collision_layer = 24
 script = ExtResource("1_e5r3t")
 
 [node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("2_bsyy6")
+scale = Vector2(3.57952, 3.57952)
+texture = ExtResource("2_gcr5g")
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_djsg4")

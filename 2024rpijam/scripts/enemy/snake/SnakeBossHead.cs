@@ -13,10 +13,12 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	public float attackRange = 30;
 
 	private PackedScene linkPackedScene;
+	private PackedScene headPackedScene;
 
 	public override void _Ready() {
 		base._Ready();
 		linkPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBossLink.tscn");
+		headPackedScene = GD.Load<PackedScene>("res://scenes/enemy/snake/SnakeBoss.tscn");
 		makeSegments(linkPackedScene);
 	}
 
@@ -38,8 +40,16 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	}
 
 	public override void kill() {
-		for (int i = segments.Count-1; i >= 0; i--) {
-			segments[i].QueueFree();
+		GD.Print("segments.Count: ",segments.Count);
+		foreach (RigidBody2D segment in segments) {
+			if (segment is BaseSnakeLink) {
+				(segments[1] as BaseSnakeLink).head = null;
+			}
 		}
+		if (segments.Count > 1) {
+			if (segments[1] is BaseSnakeLink)
+				(segments[1] as BaseSnakeLink).makeHead(headPackedScene);
+		}
+		QueueFree();
 	}
 }

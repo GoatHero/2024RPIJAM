@@ -1,13 +1,13 @@
 [gd_scene load_steps=42 format=3 uid="uid://opg6o12fn0h8"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
-[ext_resource type="Texture2D" uid="uid://3mugagfpq25w" path="res://sprites/the_fellow_dash.png" id="2_54fgw"]
-[ext_resource type="Texture2D" uid="uid://s5qi7c11dq8i" path="res://sprites/the_fellow.png" id="2_iqj2m"]
+[ext_resource type="Texture2D" uid="uid://3mugagfpq25w" path="res://sprites/player/the_fellow_dash.png" id="2_54fgw"]
+[ext_resource type="Texture2D" uid="uid://s5qi7c11dq8i" path="res://sprites/player/the_fellow.png" id="2_iqj2m"]
 [ext_resource type="PackedScene" uid="uid://bigo0ycn36e4o" path="res://scenes/UI/HealthNumber.tscn" id="3_8ndyp"]
-[ext_resource type="Texture2D" uid="uid://b017dbtga02x5" path="res://sprites/the_fellow_jump.png" id="4_7fsln"]
+[ext_resource type="Texture2D" uid="uid://b017dbtga02x5" path="res://sprites/player/the_fellow_jump.png" id="4_7fsln"]
 [ext_resource type="Texture2D" uid="uid://c1mf1akynd0o" path="res://sprites/icon.svg" id="4_h8oin"]
-[ext_resource type="Texture2D" uid="uid://gjahicv0fbmc" path="res://sprites/the_fellow_wall_kick.png" id="5_0n2g4"]
-[ext_resource type="Texture2D" uid="uid://csekiapduf3kh" path="res://sprites/the_fellow_slash.png" id="6_ucrlg"]
+[ext_resource type="Texture2D" uid="uid://gjahicv0fbmc" path="res://sprites/player/the_fellow_wall_kick.png" id="5_0n2g4"]
+[ext_resource type="Texture2D" uid="uid://csekiapduf3kh" path="res://sprites/player/the_fellow_slash.png" id="6_ucrlg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdwvt"]
 atlas = ExtResource("2_54fgw")
@@ -225,14 +225,55 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhci7"]
 size = Vector2(15, 28)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2a8op"]
-radius = 38.2099
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j8wdk"]
+radius = 25.0
+height = 103.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h7pwq"]
 size = Vector2(17, 80)
 
 [sub_resource type="Animation" id="Animation_830f5"]
 resource_name = "Jump"
+
+[sub_resource type="Animation" id="Animation_lgbph"]
+resource_name = "Reset"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Icon:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_xy6ch"]
 resource_name = "Run"
@@ -276,46 +317,6 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_lgbph"]
-resource_name = "Reset"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Icon:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m2aft"]
 _data = {
 "Jump": SubResource("Animation_830f5"),
@@ -335,6 +336,7 @@ sprite_frames = SubResource("SpriteFrames_7ppf7")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(3, 4)
 shape = SubResource("RectangleShape2D_bhci7")
 
@@ -362,20 +364,22 @@ player = NodePath("../../..")
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
-position = Vector2(47, -26)
-shape = SubResource("CircleShape2D_2a8op")
-
 [node name="hit" type="Sprite2D" parent="hitBox"]
-position = Vector2(48.5, -25.25)
-scale = Vector2(0.476563, 0.433594)
+position = Vector2(52, -8)
+scale = Vector2(0.338269, 0.704616)
 texture = ExtResource("4_h8oin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+visible = false
+position = Vector2(51, -8)
+shape = SubResource("CapsuleShape2D_j8wdk")
 
 [node name="wallBoxL" type="Area2D" parent="."]
 position = Vector2(-30, 0)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallBoxL"]
+visible = false
 shape = SubResource("RectangleShape2D_h7pwq")
 
 [node name="wallBoxR" type="Area2D" parent="."]
@@ -383,6 +387,7 @@ position = Vector2(30, 0)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wallBoxR"]
+visible = false
 shape = SubResource("RectangleShape2D_h7pwq")
 
 [node name="hitTimer" type="Timer" parent="."]
