@@ -189,7 +189,8 @@ public partial class Player : CharacterBody2D {
 	public void attack() {
 		foreach(Node2D node in attackBox.GetOverlappingBodies()) {
 			if (IsInstanceValid(node) && node is BaseEnemy) {
-				(node as BaseEnemy).damage(attackDamage);
+				Vector2 dif = node.GlobalPosition - GlobalPosition;
+				(node as BaseEnemy).damage(attackDamage, dif/dif.Length()*6);
 			}
 		}
 		addAttackCooldown();

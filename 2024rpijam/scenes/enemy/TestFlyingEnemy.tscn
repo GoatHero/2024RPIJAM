@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://7y5g1fbk7xw0" path="res://sprites/enemy/Spider.png" id="2_gcr5g"]
 [ext_resource type="PackedScene" uid="uid://bjtgjya1uxanx" path="res://scenes/UI/HealthBar.tscn" id="3_s4pjl"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
+radius = 68.0661
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_o8vh5"]
 atlas = ExtResource("2_gcr5g")
 region = Rect2(0, 0, 33, 35)
@@ -33,24 +36,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_djsg4"]
-radius = 68.0661
-
 [node name="TestFlyingEnemy" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 collision_layer = 24
 script = ExtResource("1_e5r3t")
-attackDamage = null
-attackKnockback = null
-attackRange = null
-speed = null
-health = null
-maxHealth = null
-
-[node name="Icon" type="AnimatedSprite2D" parent="."]
-scale = Vector2(3.57952, 3.57952)
-sprite_frames = SubResource("SpriteFrames_lyqaj")
-frame_progress = 0.79022
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_djsg4")
@@ -63,6 +52,13 @@ debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="HealthBar" parent="." instance=ExtResource("3_s4pjl")]
 position = Vector2(0, -90)
-hideWhenFull = null
+
+[node name="Icon" type="Node2D" parent="."]
+scale = Vector2(3.57952, 3.57952)
+
+[node name="Icon" type="AnimatedSprite2D" parent="Icon"]
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_lyqaj")
+frame_progress = 0.79022
 
 [connection signal="timeout" from="AttackCooldown" to="." method="resetAttackCooldown"]
