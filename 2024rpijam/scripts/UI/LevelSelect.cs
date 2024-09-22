@@ -5,16 +5,15 @@ using System;
 public partial class LevelSelect : Control
 {
 	[Export]
-	public int highestLevel = 3;
-	[Export]
 	public int levelCount = 4;
 	
 	public override void _Ready(){
+		GlobalData g = (GlobalData)(GetTree().Root.GetNode("GlobalData"));
 		for(int i = 1; i < levelCount + 1; i++){
 			string getter = "Level" + i;
 			GD.Print("Start: " + getter);
 			Button button = GetNode<Button>(getter);
-			if(i > highestLevel)
+			if(i > g.highestLevel)
 				button.Disabled = true;
 			else
 				button.Disabled = false;

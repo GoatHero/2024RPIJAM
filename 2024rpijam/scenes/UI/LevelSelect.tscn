@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_h3afx")
 script = ExtResource("2_7yyc3")
+levelCount = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
