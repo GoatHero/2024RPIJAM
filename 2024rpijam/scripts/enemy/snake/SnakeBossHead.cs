@@ -25,8 +25,11 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
 
+		float dt = (float) delta;
+
 		if (isHead) {
 			sprite.Frame = 0;
+
 			moveToPosition(getPathToPos(player.GlobalPosition));		
 
 			if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
@@ -35,6 +38,18 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 			}
 		} else {
 			sprite.Frame = 1;
+
+			bool l = leftWallTrig.HasOverlappingBodies();
+			bool r = rightWallTrig.HasOverlappingBodies();
+			if (l && r) {
+
+			} else if (l) {
+				ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*speed*size/10f);
+			} else if (r) {
+				ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*speed*size/10f);
+			} else {
+				ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*speed*size/10f);
+			}
 		}
 	}
 

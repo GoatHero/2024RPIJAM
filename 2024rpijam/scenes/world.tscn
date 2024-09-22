@@ -20,5 +20,5 @@ position = Vector2(-840, -447)
 scale = Vector2(-5, 5)
 
 [node name="Node2D" parent="." instance=ExtResource("3_thiem")]
-position = Vector2(0, 73)
+position = Vector2(-1549, -13)
 rotation = -1.5708

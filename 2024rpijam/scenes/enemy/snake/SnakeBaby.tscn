@@ -30,7 +30,7 @@ speed = 2000.0
 health = 20.0
 maxHealth = 20.0
 
-[node name="BabySnakeHead" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(5, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("2_lwrtc")

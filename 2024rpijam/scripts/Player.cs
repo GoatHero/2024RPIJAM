@@ -59,19 +59,27 @@ public partial class Player : CharacterBody2D
 		
 		//Handle Attack 
 		if (Input.IsActionJustPressed("attack") && canAttack) {
-			Node2D closest = null;
+			/* only attack closest */
+			// Node2D closest = null;
+			// foreach(Node2D node in hitBox.GetOverlappingBodies()) {
+			// 	if (IsInstanceValid(node) && node is BaseEnemy) {
+			// 		if (
+			// 			closest == null ||
+			// 			(closest.GlobalPosition - GlobalPosition) > (node.GlobalPosition - GlobalPosition)
+			// 		) {
+			// 			closest = node;
+			// 		}
+			// 	}
+			// }
+			// if (closest != null)
+			// 	(closest as BaseEnemy).damage(attackDamage);
+
+			/* attack all in range */
 			foreach(Node2D node in hitBox.GetOverlappingBodies()) {
 				if (IsInstanceValid(node) && node is BaseEnemy) {
-					if (
-						closest == null ||
-						(closest.GlobalPosition - GlobalPosition) > (node.GlobalPosition - GlobalPosition)
-					) {
-						closest = node;
-					}
+					(node as BaseEnemy).damage(attackDamage);
 				}
 			}
-			if (closest != null)
-				(closest as BaseEnemy).damage(attackDamage);
 			addAttackCooldown();
 		}
 		
@@ -158,7 +166,6 @@ public partial class Player : CharacterBody2D
 	}
 	
 	public void damage(float amount, Vector2 knockback = new Vector2()) {
-		GD.Print("hit: ", amount);
 		changeHealth(amount);
 		Velocity += knockback*50;
 	}
