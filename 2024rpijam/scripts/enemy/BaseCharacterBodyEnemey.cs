@@ -10,6 +10,8 @@ public partial class BaseCharacterBodyEnemy : CharacterBody2D, BaseEnemy
 	public float health = 10;
 	[Export]
 	public float maxHealth = 10;
+	[Export]
+	public float airRes = 0.9f;
 
 	protected bool canAttack = true;
 	protected Player player;
@@ -29,7 +31,7 @@ public partial class BaseCharacterBodyEnemy : CharacterBody2D, BaseEnemy
 		if (direction != Vector2.Zero) {
 			Velocity += dt * direction/direction.Length() * speed;
 		}
-		Velocity -= dt * Velocity * 0.9f;
+		Velocity -= dt * Velocity * airRes;
 
 		MoveAndSlide();
 

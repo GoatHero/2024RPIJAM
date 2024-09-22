@@ -29,10 +29,8 @@ public partial class Laser : Node2D {
 	public override void _PhysicsProcess(double delta) {
 		setUp();
 		if(active){
-			foreach(Node2D node in hitBox.GetOverlappingBodies()){
-				if(IsInstanceValid(node) && node is Player player){
-					player.damage((float)(15 * delta));
-				}
+			foreach(Node2D node in hitBox.GetOverlappingAreas()){
+				(node.GetParent() as Player).damage((float)(15 * delta));
 			}
 		}
 	}

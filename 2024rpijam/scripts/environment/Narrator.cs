@@ -1,6 +1,16 @@
+using System;
 using Godot;
 
-public partial class Narrator : Node2D {
+public partial class Narrator : BaseCharacterBodyEnemy {
+	public override void _PhysicsProcess(double delta) {
+		Vector2 dif = GlobalPosition - player.GlobalPosition;
+		Vector2 wantedDif = dif/dif.Length()*500;
+		if (Math.Abs(wantedDif.X) < Math.Abs(wantedDif.Y)) {
+			(wantedDif.X, wantedDif.Y) = (Math.Abs(wantedDif.Y) * Math.Sign(wantedDif.X), Math.Abs(wantedDif.X) * Math.Sign(wantedDif.Y));
+		}
+		moveToPosition(player.GlobalPosition + wantedDif);
+	}
+
     public void setDialogue(int line) {
         string lines = string.Empty;
         Timer timer = GetNode<Timer>("Timer");

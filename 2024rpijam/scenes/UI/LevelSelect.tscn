@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfd2mpn7a2ej8"]
+
+[ext_resource type="Theme" uid="uid://5tqficqf8ixq" path="res://other/start.theme" id="1_h3afx"]
+[ext_resource type="Script" path="res://scripts/UI/SceneChangeButton.cs" id="1_lr7js"]
+[ext_resource type="Script" path="res://scripts/UI/LevelSelect.cs" id="2_7yyc3"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_h3afx")
+script = ExtResource("2_7yyc3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -920.0
+offset_bottom = -500.0
+scale = Vector2(48, 27)
+color = Color(0.695503, 0.695503, 0.695503, 1)
+
+[node name="Level1" type="Button" parent="."]
+layout_mode = 0
+offset_left = -738.0
+offset_top = -275.0
+offset_right = -522.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 150
+text = "1"
+script = ExtResource("1_lr7js")
+
+[node name="Level2" type="Button" parent="."]
+layout_mode = 0
+offset_left = -343.0
+offset_top = -275.0
+offset_right = -127.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 150
+text = "2"
+script = ExtResource("1_lr7js")
+
+[node name="Level3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 115.0
+offset_top = -275.0
+offset_right = 331.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 150
+text = "3"
+script = ExtResource("1_lr7js")
+
+[node name="Level4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 493.0
+offset_top = -275.0
+offset_right = 709.0
+offset_bottom = -65.0
+theme_override_font_sizes/font_size = 150
+text = "4"
+script = ExtResource("1_lr7js")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -367.0
+offset_top = -469.0
+offset_right = -276.0
+offset_bottom = -446.0
+scale = Vector2(8.6, 5.84)
+text = "Level Select"
