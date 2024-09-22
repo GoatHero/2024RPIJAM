@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=4 uid="uid://dickv3jkmhyf"]
+[gd_scene load_steps=5 format=4 uid="uid://dickv3jkmhyf"]
 
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="1_xx3b5"]
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="2_h2ve7"]
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_g5oec"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brluw"]
+size = Vector2(168, 335)
 
 [node name="root" type="Node2D"]
 
@@ -25,5 +28,15 @@ metadata/_edit_lock_ = true
 position = Vector2(-1853, 879)
 safe_margin = 0.15
 
-[node name="Nar" parent="." instance=ExtResource("3_g5oec")]
+[node name="Nar" parent="." node_paths=PackedStringArray("areas") instance=ExtResource("3_g5oec")]
 position = Vector2(-2092, 875)
+areas = [NodePath("../Area2D")]
+lines = ["Get Ready"]
+times = [10.0]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1091, 537)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(187, -7)
+shape = SubResource("RectangleShape2D_brluw")
