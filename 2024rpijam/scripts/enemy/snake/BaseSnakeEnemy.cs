@@ -8,9 +8,13 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	[Export]
 	public int size = 1;
 	[Export]
-	public int rotationSpeed = 500;
+	public float rotationSpeed = 4000;
 	[Export]
-	public int minSpeed = 0;
+	public float minSpeed = 0;
+	[Export]
+	public float size1Speed = 1000;
+	[Export]
+	public float size1RotationSpeed = 1000;
 
 	protected bool isHead = true;
 
@@ -33,13 +37,13 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 
 		bool l = leftWallTrig.HasOverlappingBodies();
 		bool r = rightWallTrig.HasOverlappingBodies();
-		float moveSpeed = Math.Max(minSpeed, speed*size);
+		float moveSpeed = (size == 1) ? size1Speed : Math.Max(minSpeed, speed*size);
 		if (l && r) {
 			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		} else if (l) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.1f*(float)Math.PI)*moveSpeed);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation+0.02f*(float)Math.PI)*moveSpeed);
 		} else if (r) {
-			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.1f*(float)Math.PI)*moveSpeed);
+			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation-0.02f*(float)Math.PI)*moveSpeed);
 		} else {
 			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		}
@@ -47,7 +51,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 		Vector2 direction = pos - GlobalPosition;
 		
 		if (direction.Length() > 0f) {
-			ApplyCentralImpulse(dt*direction/direction.Length()*speed*size*0.1f);
+			ApplyCentralImpulse(dt*direction/direction.Length()*moveSpeed*0.1f);
 
 			float at = direction.Angle()-GlobalRotation+(float)Math.PI;
 			
@@ -57,7 +61,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 			while (at < -Math.PI) {
 				at += (float)Math.PI*2f;
 			}
-			ApplyTorqueImpulse(dt*at*rotationSpeed);
+			ApplyTorqueImpulse(dt*at* ((size == 1) ? size1RotationSpeed : rotationSpeed));
 		}
 
 		return direction.Length() <= 0.01;

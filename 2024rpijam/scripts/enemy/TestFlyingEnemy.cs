@@ -19,7 +19,7 @@ public partial class TestFlyingEnemy : BaseFlyingEnemy {
         GetNode<AnimatedSprite2D>("Icon").LookAt(nextPos);
         moveToPosition(nextPos);
 
-        if(canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
+        if (canAttack && (player.GlobalPosition - GlobalPosition).Length() < attackRange) {
             attack(player);
             addAttackCooldown();
         }
