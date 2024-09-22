@@ -29,9 +29,8 @@ position = Vector2(-396, -356)
 
 [node name="SnakeBaby" parent="." instance=ExtResource("5_qlr83")]
 position = Vector2(-632, -256)
-size = 20
+size = 10
 
 [node name="SnakeBoss" parent="." instance=ExtResource("6_42a4s")]
 position = Vector2(-1097, -728)
 size = 30
-rotationSpeed = 4000.0

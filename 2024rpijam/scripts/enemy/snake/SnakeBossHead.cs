@@ -9,8 +9,6 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 	public float attackDamage = 10;
 	[Export]
 	public float attackKnockback = 10;
-	[Export]
-	public float attackRange = 30;
 
 	protected Sprite2D sprite;
 	protected PackedScene headPackedScene;
@@ -33,7 +31,6 @@ public partial class SnakeBossHead : BaseSnakeEnemy
 			sprite.Frame = 0;
 
 			moveToPosition(getPathToPos(player.GlobalPosition));		
-
 			if (canAttack && attackBox.HasOverlappingAreas()) {
 				attack(player);
 				addAttackCooldown();

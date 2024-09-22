@@ -670,8 +670,8 @@ transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(100.402, -282.067)
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 50
-collision_layer = 6
+z_index = 100
+collision_layer = 2
 script = ExtResource("1_mtpqr")
 
 [node name="Icon" type="AnimatedSprite2D" parent="."]
@@ -680,7 +680,16 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7ppf7")
 animation = &"Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="hitBox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="collision" type="CollisionShape2D" parent="hitBox"]
+visible = false
+scale = Vector2(3, 4)
+shape = SubResource("RectangleShape2D_bhci7")
+
+[node name="collision" type="CollisionShape2D" parent="."]
 visible = false
 scale = Vector2(3, 4)
 shape = SubResource("RectangleShape2D_bhci7")
@@ -705,11 +714,11 @@ grow_vertical = 2
 layout_mode = 0
 player = NodePath("../../..")
 
-[node name="hitBox" type="Area2D" parent="."]
+[node name="attackBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackBox"]
 position = Vector2(47, 0)
 shape = SubResource("CapsuleShape2D_j8wdk")
 
@@ -733,6 +742,7 @@ shape = SubResource("RectangleShape2D_h7pwq")
 wait_time = 0.3
 
 [node name="dashCoolTimer" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -744,5 +754,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_am4mn")
 anim_player = NodePath("../AnimationPlayer")
 
+[node name="iFrameTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="hitTimer" to="." method="resetAttackCooldown"]
 [connection signal="timeout" from="dashCoolTimer" to="." method="resetDash"]
+[connection signal="timeout" from="iFrameTimer" to="." method="loseIFrames"]

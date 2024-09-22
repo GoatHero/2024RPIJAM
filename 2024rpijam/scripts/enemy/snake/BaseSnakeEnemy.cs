@@ -35,9 +35,13 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	public override bool moveToPosition(Vector2 pos) {
 		float dt = (float)GetPhysicsProcessDeltaTime();
 
+		Vector2 direction = pos - GlobalPosition;
+
 		bool l = leftWallTrig.HasOverlappingBodies();
 		bool r = rightWallTrig.HasOverlappingBodies();
 		float moveSpeed = (size == 1) ? size1Speed : Math.Max(minSpeed, speed*size);
+		if (direction.Dot(Vector2.Left.Rotated(GlobalRotation)) < 0)
+			moveSpeed *= 0.5f;
 		if (l && r) {
 			ApplyCentralImpulse(-dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		} else if (l) {
@@ -48,7 +52,7 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 			ApplyCentralImpulse(dt*Vector2.Left.Rotated(GlobalRotation)*moveSpeed);
 		}
 
-		Vector2 direction = pos - GlobalPosition;
+		
 		
 		if (direction.Length() > 0f) {
 			ApplyCentralImpulse(dt*direction/direction.Length()*moveSpeed*0.1f);
@@ -113,7 +117,6 @@ public partial class BaseSnakeEnemy : BaseRigidBodyEnemy
 	}
 
 	public virtual void updateSize(int newSize) {
-		GD.Print("new size: ", newSize, " old size: ", size);
 		size = newSize;
 		parent?.updateSize(newSize+1);
 	}

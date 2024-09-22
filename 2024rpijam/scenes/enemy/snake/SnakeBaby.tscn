@@ -28,6 +28,7 @@ can_sleep = false
 continuous_cd = 2
 linear_damp = 10.0
 script = ExtResource("1_k3gmn")
+attackDamage = 1.0
 speed = 2000.0
 health = 20.0
 maxHealth = 20.0
@@ -44,8 +45,8 @@ rotation = 1.57079
 shape = SubResource("CapsuleShape2D_puy71")
 
 [node name="attackBox" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 0
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackBox"]
 position = Vector2(-28.999, 0)
@@ -55,6 +56,7 @@ shape = SubResource("CircleShape2D_3kj6i")
 avoidance_enabled = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.1
 
 [node name="front" type="Node2D" parent="."]
 position = Vector2(-20, 0)

@@ -30,10 +30,11 @@ public partial class Player : CharacterBody2D {
     public bool canAttack = true;
     private bool rightFacing = true;
     private bool canDash = false;
-
-
-
-    private Area2D hitBox;
+	private bool canBeHit = true;
+	
+	// private Area2D hitBox;
+	private Timer iFrameTimer;
+    private Area2D attackBox;
     private Area2D wallBoxL;
     private Area2D wallBoxR;
     private Timer attackCooldownTimer;
@@ -43,7 +44,9 @@ public partial class Player : CharacterBody2D {
 
     public override void _Ready() {
         base._Ready();
-        hitBox = GetNode<Area2D>("hitBox");
+		// hitBox = GetNode<Area2D>("hitBox");
+		iFrameTimer = GetNode<Timer>("iFrameTimer");
+        attackBox = GetNode<Area2D>("attackBox");
         wallBoxL = GetNode<Area2D>("wallBoxL");
         wallBoxR = GetNode<Area2D>("wallBoxR");
         attackCooldownTimer = GetNode<Timer>("hitTimer");
@@ -106,6 +109,7 @@ public partial class Player : CharacterBody2D {
             velocity.X += rightFacing ? dashSpeed : -dashSpeed;
             dashCoolTimer.Start(0.01f);
             canDash = false;
+			addIFrames(0.5f);
         }
 
         // Add the gravity and friction
@@ -183,7 +187,7 @@ public partial class Player : CharacterBody2D {
     }
 	
 	public void attack() {
-		foreach(Node2D node in hitBox.GetOverlappingBodies()) {
+		foreach(Node2D node in attackBox.GetOverlappingBodies()) {
 			if (IsInstanceValid(node) && node is BaseEnemy) {
 				(node as BaseEnemy).damage(attackDamage);
 			}
@@ -192,6 +196,7 @@ public partial class Player : CharacterBody2D {
 	}
 
     public void damage(float amount, Vector2 knockback = new Vector2()) {
+		if (!canBeHit) return;
         GD.Print("hit: ", amount);
         changeHealth(amount);
         Velocity += knockback * 50;
@@ -219,4 +224,13 @@ public partial class Player : CharacterBody2D {
     public void resetDash() {
         Velocity = new Vector2(Velocity.X > 0 ? speed * 0.6f : -speed * 0.6f, 0);
     }
+
+	public void addIFrames(float timeSec = -1) {
+		iFrameTimer.Start(timeSec);
+		canBeHit = false;
+	}
+
+	public void loseIFrames() {
+		canBeHit = true;
+	}
 }

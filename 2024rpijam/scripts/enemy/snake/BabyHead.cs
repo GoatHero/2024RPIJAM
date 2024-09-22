@@ -9,8 +9,6 @@ public partial class BabyHead : BaseSnakeEnemy
 	public float attackDamage = 10;
 	[Export]
 	public float attackKnockback = 10;
-	[Export]
-	public float attackRange = 30;
 
 	protected Sprite2D sprite;
 	protected PackedScene linkPackedScene;
@@ -31,8 +29,7 @@ public partial class BabyHead : BaseSnakeEnemy
 		if (isHead) {
 			sprite.Frame = 0;
 			
-			moveToPosition(getPathToPos(player.GlobalPosition));		
-
+			moveToPosition(getPathToPos(player.GlobalPosition));
 			if (canAttack && attackBox.HasOverlappingAreas()) {
 				attack(player);
 				addAttackCooldown();
