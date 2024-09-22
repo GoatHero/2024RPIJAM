@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buev2dp3b546q"
-path="res://.godot/imported/babySnakeHead.png-c21e94daed6d125512d8af71455e1a1e.ctex"
+uid="uid://bjl7ktt657tai"
+path="res://.godot/imported/BabySnake.png-946881d5c29277b48df2a4977a603a0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemy/snake/babySnakeHead.png"
-dest_files=["res://.godot/imported/babySnakeHead.png-c21e94daed6d125512d8af71455e1a1e.ctex"]
+source_file="res://sprites/enemy/snake/BabySnake.png"
+dest_files=["res://.godot/imported/BabySnake.png-946881d5c29277b48df2a4977a603a0c.ctex"]
 
 [params]
 

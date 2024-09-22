@@ -8,11 +8,8 @@ public partial class Laser : Node2D {
 
         Vector2 pos = GetNode<RayCast2D>("RayCast2D").GetCollisionPoint();
 
-        GD.Print(pos);
         pos = ToLocal(pos);
-        GD.Print(pos);
         Line2D line = GetNode<Line2D>("Line2D");
-        GD.Print(line.Points[0]);
         line.SetPointPosition(0, pos);
         line.GetNode<GpuParticles2D>("GPUParticles2D").Position = pos;
         CollisionShape2D laserCollider = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
