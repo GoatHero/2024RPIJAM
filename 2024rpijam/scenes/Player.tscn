@@ -641,8 +641,7 @@ script = ExtResource("1_mtpqr")
 position = Vector2(9.53674e-07, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7ppf7")
-animation = &"Into_Side"
-frame = 2
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

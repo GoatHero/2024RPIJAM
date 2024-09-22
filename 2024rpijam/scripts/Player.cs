@@ -48,7 +48,7 @@ public partial class Player : CharacterBody2D {
         attackCooldownTimer = GetNode<Timer>("hitTimer");
         dashCoolTimer = GetNode<Timer>("dashCoolTimer");
         camera = GetNode<Camera2D>("camera");
-        animationPlayer = (AnimationNodeStateMachinePlayback)GetNode<AnimationTree>("AnimationPlayer").Get("parameters/playback");
+        animationPlayer = (AnimationNodeStateMachinePlayback)GetNode<AnimationTree>("AnimationTree").Get("parameters/playback");
 
     }
 
@@ -56,9 +56,9 @@ public partial class Player : CharacterBody2D {
         float dt = (float)delta;
         Vector2 velocity = Velocity;
 
-
         //Handle Attack 
         if(Input.IsActionJustPressed("attack") && canAttack) {
+            animationPlayer.Travel("Attack");
             Node2D closest = null;
             foreach(Node2D node in hitBox.GetOverlappingBodies()) {
                 if(IsInstanceValid(node) && node is BaseEnemy) {
