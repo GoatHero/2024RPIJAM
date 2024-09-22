@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsm1mevu2ct7p"]
 
-[ext_resource type="Script" path="res://scenes/enemy/Spike.cs" id="1_7ea2x"]
+[ext_resource type="Script" path="res://scripts/environment/Spike.cs" id="1_7ea2x"]
 [ext_resource type="Texture2D" uid="uid://bbygj12vels8r" path="res://sprites/world/Spikes.png" id="1_av1wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02yfw"]
@@ -13,10 +13,11 @@ script = ExtResource("1_7ea2x")
 texture = ExtResource("1_av1wt")
 
 [node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_02yfw")
 
-[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="hitbox" to="." method="OnEnter"]
+[connection signal="body_entered" from="hitbox" to="." method="onEnter"]
