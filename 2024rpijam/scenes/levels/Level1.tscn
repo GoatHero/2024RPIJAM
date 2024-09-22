@@ -65,32 +65,16 @@ position = Vector2(2070, -400)
 
 [node name="Nar" parent="." instance=ExtResource("3_tboeh")]
 position = Vector2(-4030, 1231)
-lines = null
-times = null
 isStatic = true
-health = null
-maxHealth = null
 
 [node name="Nar2" parent="." instance=ExtResource("3_tboeh")]
 position = Vector2(-1801, 1240)
-lines = null
-times = null
 isStatic = true
-health = null
-maxHealth = null
 
 [node name="Nar3" parent="." instance=ExtResource("3_tboeh")]
 position = Vector2(-124, -673)
-lines = null
-times = null
 isStatic = true
-health = null
-maxHealth = null
 
 [node name="Nar4" parent="." instance=ExtResource("3_tboeh")]
 position = Vector2(1782, -751)
-lines = null
-times = null
 isStatic = true
-health = null
-maxHealth = null

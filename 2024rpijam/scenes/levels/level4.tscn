@@ -133,27 +133,9 @@ shape = SubResource("RectangleShape2D_a5jdq")
 
 [node name="TestFlyingEnemy" parent="." instance=ExtResource("9_miagh")]
 position = Vector2(-902, -3409)
-attackDamage = 10.0
-attackKnockback = 10.0
-attackRange = 30.0
-speed = 100.0
-health = 10.0
-maxHealth = 10.0
 
 [node name="TestFlyingEnemy2" parent="." instance=ExtResource("9_miagh")]
 position = Vector2(-911, -3207)
-attackDamage = 10.0
-attackKnockback = 10.0
-attackRange = 30.0
-speed = 100.0
-health = 10.0
-maxHealth = 10.0
 
 [node name="TestFlyingEnemy3" parent="." instance=ExtResource("9_miagh")]
 position = Vector2(-984, -3363)
-attackDamage = 10.0
-attackKnockback = 10.0
-attackRange = 30.0
-speed = 100.0
-health = 10.0
-maxHealth = 10.0
