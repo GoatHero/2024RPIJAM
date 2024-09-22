@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxkh44vvddwt6"
-path="res://.godot/imported/laser_emmiter.png-91e9db3fbd7279fe473897393846ed1e.ctex"
+uid="uid://be5hnxys0dalg"
+path="res://.godot/imported/the_fellow_intro.png-2893b7585711588fb717d12e6a95ae6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/laser_emmiter.png"
-dest_files=["res://.godot/imported/laser_emmiter.png-91e9db3fbd7279fe473897393846ed1e.ctex"]
+source_file="res://sprites/the_fellow_intro.png"
+dest_files=["res://.godot/imported/the_fellow_intro.png-2893b7585711588fb717d12e6a95ae6f.ctex"]
 
 [params]
 
