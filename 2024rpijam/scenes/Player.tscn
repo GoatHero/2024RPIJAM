@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://opg6o12fn0h8"]
+[gd_scene load_steps=70 format=3 uid="uid://opg6o12fn0h8"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
 [ext_resource type="Texture2D" uid="uid://3mugagfpq25w" path="res://sprites/player/the_fellow_dash.png" id="2_54fgw"]
@@ -235,7 +235,6 @@ size = Vector2(17, 80)
 [sub_resource type="Animation" id="Animation_pexh4"]
 resource_name = "Attack"
 length = 1.00001
-loop_mode = 1
 step = 0.0625
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -548,6 +547,91 @@ _data = {
 "Wall_Kick": SubResource("Animation_7tn6v")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cbqfx"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nq6l0"]
+animation = &"Into_Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wk15i"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ys4v1"]
+animation = &"Into_Run"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_70vux"]
+animation = &"Reset"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5j1eh"]
+animation = &"Run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbxvp"]
+animation = &"Wall_Kick"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lrp5s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lsvl7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mkd78"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xpe16"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r204a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ckgje"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y54ar"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"!moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y60rs"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8hgsi"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ujpwh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5f7gu"]
+advance_mode = 2
+advance_condition = &"onGround"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kt8ei"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mwpv5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bl6c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4g6el"]
+advance_mode = 2
+advance_condition = &"onGround"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_am4mn"]
+states/Attack/node = SubResource("AnimationNodeAnimation_cbqfx")
+states/Attack/position = Vector2(554, -70.5587)
+states/End/position = Vector2(1186, 92.4413)
+states/Into_Side/node = SubResource("AnimationNodeAnimation_nq6l0")
+states/Into_Side/position = Vector2(554, 84.4413)
+states/Jump/node = SubResource("AnimationNodeAnimation_wk15i")
+states/Jump/position = Vector2(787, -70.5587)
+states/Out_of_Side/node = SubResource("AnimationNodeAnimation_ys4v1")
+states/Out_of_Side/position = Vector2(554, 226.441)
+states/RESET/node = SubResource("AnimationNodeAnimation_70vux")
+states/RESET/position = Vector2(418, 100)
+states/Run/node = SubResource("AnimationNodeAnimation_5j1eh")
+states/Run/position = Vector2(787, 79.4413)
+states/Wall_Kick/node = SubResource("AnimationNodeAnimation_kbxvp")
+states/Wall_Kick/position = Vector2(787, 226.441)
+transitions = ["Start", "RESET", SubResource("AnimationNodeStateMachineTransition_lrp5s"), "RESET", "Into_Side", SubResource("AnimationNodeStateMachineTransition_lsvl7"), "Into_Side", "Run", SubResource("AnimationNodeStateMachineTransition_mkd78"), "Into_Side", "Attack", SubResource("AnimationNodeStateMachineTransition_xpe16"), "Into_Side", "Wall_Kick", SubResource("AnimationNodeStateMachineTransition_r204a"), "Out_of_Side", "RESET", SubResource("AnimationNodeStateMachineTransition_ckgje"), "Into_Side", "Out_of_Side", SubResource("AnimationNodeStateMachineTransition_y54ar"), "Run", "Into_Side", SubResource("AnimationNodeStateMachineTransition_y60rs"), "Into_Side", "Jump", SubResource("AnimationNodeStateMachineTransition_8hgsi"), "Attack", "Into_Side", SubResource("AnimationNodeStateMachineTransition_ujpwh"), "Wall_Kick", "Out_of_Side", SubResource("AnimationNodeStateMachineTransition_5f7gu"), "Out_of_Side", "Wall_Kick", SubResource("AnimationNodeStateMachineTransition_kt8ei"), "Out_of_Side", "Run", SubResource("AnimationNodeStateMachineTransition_mwpv5"), "Out_of_Side", "Jump", SubResource("AnimationNodeStateMachineTransition_2bl6c"), "Jump", "Out_of_Side", SubResource("AnimationNodeStateMachineTransition_4g6el")]
+graph_offset = Vector2(0, -106.559)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 50
 collision_layer = 6
@@ -557,7 +641,7 @@ script = ExtResource("1_mtpqr")
 position = Vector2(9.53674e-07, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7ppf7")
-animation = &"Dash"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -624,6 +708,12 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_m2aft")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_am4mn")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/!moving = false
+parameters/conditions/onGround = false
 
 [connection signal="timeout" from="hitTimer" to="." method="resetAttackCooldown"]
 [connection signal="timeout" from="dashCoolTimer" to="." method="resetDash"]
