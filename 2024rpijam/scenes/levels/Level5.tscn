@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4fdv0gi58alg"]
+[gd_scene load_steps=7 format=4 uid="uid://qgan0l6panka"]
 
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="1_q2k0s"]
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="2_ai4te"]
 [ext_resource type="PackedScene" uid="uid://b0xuckrnmu8n6" path="res://scenes/enemy/snake/SnakeBoss.tscn" id="2_vs0ff"]
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_k7mql"]
+[ext_resource type="Script" path="res://scenes/levels/Area2d2.cs" id="5_jnrwq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ol3l"]
 size = Vector2(130.746, 31.6936)
@@ -42,6 +43,18 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(179, -418.83)
+scale = Vector2(29.6911, -71.6341)
+shape = SubResource("RectangleShape2D_2ol3l")
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2(72, -288)
+scale = Vector2(-11.3417, 1.65368)
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("5_jnrwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(179, -418.83)
 scale = Vector2(29.6911, -71.6341)
 shape = SubResource("RectangleShape2D_2ol3l")
