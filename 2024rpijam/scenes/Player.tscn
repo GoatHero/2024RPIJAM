@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://opg6o12fn0h8"]
+[gd_scene load_steps=84 format=3 uid="uid://opg6o12fn0h8"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_mtpqr"]
 [ext_resource type="Texture2D" uid="uid://3mugagfpq25w" path="res://sprites/player/the_fellow_dash.png" id="2_54fgw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b017dbtga02x5" path="res://sprites/player/the_fellow_jump.png" id="4_7fsln"]
 [ext_resource type="Texture2D" uid="uid://gjahicv0fbmc" path="res://sprites/player/the_fellow_wall_kick.png" id="5_0n2g4"]
 [ext_resource type="Texture2D" uid="uid://csekiapduf3kh" path="res://sprites/player/the_fellow_slash.png" id="6_ucrlg"]
+[ext_resource type="FontFile" uid="uid://dioy2w6coivqu" path="res://other/tinypixel.otf" id="8_aa2n3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdwvt"]
 atlas = ExtResource("2_54fgw")
@@ -712,6 +713,7 @@ grow_vertical = 2
 
 [node name="HealthNumber" parent="camera/Control" node_paths=PackedStringArray("player") instance=ExtResource("3_8ndyp")]
 layout_mode = 0
+theme_override_fonts/normal_font = ExtResource("8_aa2n3")
 player = NodePath("../../..")
 
 [node name="attackBox" type="Area2D" parent="."]
