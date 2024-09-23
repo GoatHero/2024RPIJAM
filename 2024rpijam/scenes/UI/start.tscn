@@ -49,5 +49,5 @@ theme_override_font_sizes/font_size = 14
 text = "Exit"
 script = ExtResource("3_17vgd")
 
-[connection signal="pressed" from="Start" to="Start" method="onButtonPressed" binds= ["res://scenes/UI/IntroCutscene.tscn", 0]]
+[connection signal="pressed" from="Start" to="Start" method="onButtonPressed" binds= ["res://scenes/UI/IntroCutscene.tscn", -1]]
 [connection signal="pressed" from="Exit" to="Exit" method="buttonPressed"]

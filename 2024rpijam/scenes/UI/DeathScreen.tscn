@@ -53,4 +53,4 @@ text = "Level Select"
 script = ExtResource("3_rkehn")
 
 [connection signal="pressed" from="Button3" to="Button3" method="OnPress"]
-[connection signal="pressed" from="Button" to="Button" method="onButtonPressed" binds= ["res://scenes/UI/LevelSelect.tscn", 0]]
+[connection signal="pressed" from="Button" to="Button" method="onButtonPressed" binds= ["res://scenes/UI/LevelSelect.tscn", -1]]
