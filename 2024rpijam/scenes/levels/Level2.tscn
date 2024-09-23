@@ -26,8 +26,9 @@ position = Vector2(4295, 960)
 position = Vector2(-2188, 876)
 safe_margin = 0.15
 
-[node name="Nar" parent="." instance=ExtResource("3_g5oec")]
+[node name="Nar" parent="." node_paths=PackedStringArray("areas") instance=ExtResource("3_g5oec")]
 position = Vector2(-2731, 564)
+areas = [NodePath("../Area2D"), NodePath("../Area2D2")]
 lines = ["Click to Attack", "Time to ram it up a littel!"]
 times = [5.0, 5.0]
 

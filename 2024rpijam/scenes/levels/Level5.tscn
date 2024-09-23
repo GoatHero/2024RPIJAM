@@ -54,7 +54,7 @@ shape = SubResource("RectangleShape2D_2ol3l")
 
 [node name="SnakeBoss" parent="." instance=ExtResource("2_vs0ff")]
 position = Vector2(-999, -922)
-size = 60
+size = 35
 rotationSpeed = 8000.0
 size1Speed = 1500.0
 size1RotationSpeed = 3000.0

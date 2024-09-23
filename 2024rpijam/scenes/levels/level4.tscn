@@ -147,3 +147,11 @@ size = 10
 [node name="SnakeBaby5" parent="." instance=ExtResource("9_wexhg")]
 position = Vector2(-3219, -858)
 size = 10
+
+[node name="SnakeBaby6" parent="." instance=ExtResource("9_wexhg")]
+position = Vector2(-3695, -4005)
+size = 10
+
+[node name="SnakeBaby7" parent="." instance=ExtResource("9_wexhg")]
+position = Vector2(-584, -4057)
+size = 10
