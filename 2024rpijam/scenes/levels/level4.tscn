@@ -70,10 +70,6 @@ position = Vector2(605, -2480)
 position = Vector2(465, -1738)
 rotation = -0.000641442
 
-[node name="SnakeBaby" parent="Player" instance=ExtResource("9_wexhg")]
-position = Vector2(-3723, -974)
-size = 10
-
 [node name="Nar" parent="." node_paths=PackedStringArray("areas") instance=ExtResource("8_j25sj")]
 position = Vector2(-583, -2410)
 rotation = -0.000641442

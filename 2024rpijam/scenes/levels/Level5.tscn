@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ol3l"]
 size = Vector2(130.746, 31.6936)
 
-[node name="root" type="Node2D"]
+[node name="root2" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 

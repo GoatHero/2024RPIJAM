@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://birj5av8ex727" path="res://scenes/enemy/TestFlyingEnemy.tscn" id="4_w5oeh"]
 [ext_resource type="PackedScene" uid="uid://cmxtos37a3i2v" path="res://scenes/enemy/snake/SnakeBaby.tscn" id="5_w0rwx"]
 
-[node name="root" type="Node2D"]
+[node name="root2" type="Node2D"]
 
 [node name="World" type="Node2D" parent="."]
 

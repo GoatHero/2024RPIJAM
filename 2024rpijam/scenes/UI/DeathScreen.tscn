@@ -51,6 +51,6 @@ scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 36
 text = "Level Select"
 script = ExtResource("3_rkehn")
-scenePath = "res://scenes/UI/LevelSelect.tscn"
 
 [connection signal="pressed" from="Button3" to="Button3" method="OnPress"]
+[connection signal="pressed" from="Button" to="Button" method="onButtonPressed" binds= ["res://scenes/UI/LevelSelect.tscn", 0]]
