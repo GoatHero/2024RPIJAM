@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://drcg8j7jwpxwt"]
+[gd_scene load_steps=7 format=4 uid="uid://drcg8j7jwpxwt"]
 
 [ext_resource type="TileSet" uid="uid://btxnyftelanfs" path="res://other/walls.tres" id="1_k54g4"]
 [ext_resource type="PackedScene" uid="uid://dsm1mevu2ct7p" path="res://scenes/enemy/spike.tscn" id="1_wjegf"]
 [ext_resource type="PackedScene" uid="uid://opg6o12fn0h8" path="res://scenes/Player.tscn" id="2_vwxhs"]
 [ext_resource type="PackedScene" uid="uid://bmxhjoknswvur" path="res://scenes/world stuff/door.tscn" id="3_qp0b0"]
 [ext_resource type="PackedScene" uid="uid://buxi3b1mu5olq" path="res://scenes/Narrator.tscn" id="3_yuw66"]
-[ext_resource type="PackedScene" uid="uid://dgkhwglrtja18" path="res://scenes/enemy/laser.tscn" id="6_hlurk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ibj1"]
 size = Vector2(161, 344)
@@ -88,23 +87,3 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(103, -15)
 shape = SubResource("RectangleShape2D_0ibj1")
-
-[node name="Laser" parent="." instance=ExtResource("6_hlurk")]
-position = Vector2(-5509, -790)
-rotation = 1.5708
-
-[node name="Laser2" parent="." instance=ExtResource("6_hlurk")]
-position = Vector2(-5549, -790)
-rotation = 1.5708
-
-[node name="Laser3" parent="." instance=ExtResource("6_hlurk")]
-position = Vector2(-5461, -789)
-rotation = 1.5708
-
-[node name="Laser4" parent="." instance=ExtResource("6_hlurk")]
-position = Vector2(-5416, -789)
-rotation = 1.5708
-
-[node name="Laser5" parent="." instance=ExtResource("6_hlurk")]
-position = Vector2(-5416, -789)
-rotation = 1.5708

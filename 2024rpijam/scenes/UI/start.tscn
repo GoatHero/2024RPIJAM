@@ -34,6 +34,7 @@ theme_override_font_sizes/font_size = 14
 text = "Start"
 icon_alignment = 1
 script = ExtResource("2_wiyy2")
+scenePath = "res://scenes/UI/IntroCutscene.tscn"
 
 [node name="Exit" type="Button" parent="."]
 layout_mode = 0
@@ -49,5 +50,4 @@ theme_override_font_sizes/font_size = 14
 text = "Exit"
 script = ExtResource("3_17vgd")
 
-[connection signal="pressed" from="Start" to="Start" method="buttonPressed" binds= ["res://scenes/UI/IntroCutscene.tscn", 0]]
 [connection signal="pressed" from="Exit" to="Exit" method="buttonPressed"]

@@ -40,6 +40,8 @@ theme_override_fonts/font = ExtResource("3_nb72f")
 theme_override_font_sizes/font_size = 150
 text = "1"
 script = ExtResource("1_lr7js")
+scenePath = "res://scenes/levels/Level1.tscn"
+level = 1
 
 [node name="Level2" type="Button" parent="."]
 layout_mode = 0
@@ -51,6 +53,8 @@ theme_override_fonts/font = ExtResource("3_nb72f")
 theme_override_font_sizes/font_size = 150
 text = "2"
 script = ExtResource("1_lr7js")
+scenePath = "res://scenes/levels/Level2.tscn"
+level = 2
 
 [node name="Level3" type="Button" parent="."]
 layout_mode = 0
@@ -62,6 +66,8 @@ theme_override_fonts/font = ExtResource("3_nb72f")
 theme_override_font_sizes/font_size = 150
 text = "3"
 script = ExtResource("1_lr7js")
+scenePath = "res://scenes/levels/Level3.tscn"
+level = 3
 
 [node name="Level4" type="Button" parent="."]
 layout_mode = 0
@@ -73,18 +79,21 @@ theme_override_fonts/font = ExtResource("3_nb72f")
 theme_override_font_sizes/font_size = 150
 text = "4"
 script = ExtResource("1_lr7js")
+scenePath = "res://scenes/levels/level4.tscn"
+level = 4
 
 [node name="Level5" type="Button" parent="."]
 layout_mode = 0
-offset_left = -253.0
-offset_top = -5.0
-offset_right = -37.0
-offset_bottom = 205.0
+offset_left = -206.0
+offset_right = 9.99997
+offset_bottom = 210.0
 scale = Vector2(1.91915, 1.91915)
 theme_override_fonts/font = ExtResource("3_nb72f")
 theme_override_font_sizes/font_size = 150
 text = "5"
 script = ExtResource("1_lr7js")
+scenePath = "res://scenes/levels/Level5.tscn"
+level = 5
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -95,9 +104,3 @@ offset_bottom = -464.0
 scale = Vector2(8.6, 5.84)
 text = "Level Select"
 label_settings = SubResource("LabelSettings_qcdkq")
-
-[connection signal="pressed" from="Level1" to="Level1" method="buttonPressed" binds= ["res://scenes/levels/Level1.tscn", 1]]
-[connection signal="pressed" from="Level2" to="Level2" method="buttonPressed" binds= ["res://scenes/levels/Level2.tscn", 2]]
-[connection signal="pressed" from="Level3" to="Level3" method="buttonPressed" binds= ["res://scenes/levels/Level3.tscn", 3]]
-[connection signal="pressed" from="Level4" to="Level4" method="buttonPressed" binds= ["res://scenes/levels/Level4.tscn", 4]]
-[connection signal="pressed" from="Level5" to="Level5" method="buttonPressed" binds= ["res://scenes/levels/Level5.tscn", 5]]

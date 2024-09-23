@@ -25,7 +25,6 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 		{
 			int index = i;
 			areas[i].BodyEntered += (Node2D node) => {
-				GD.Print(node);
 				if (node is Player)
 					say(lines[index], times[index]);
 			};
@@ -39,6 +38,7 @@ public partial class Narrator : BaseCharacterBodyEnemy {
 			if (Math.Abs(wantedDif.X) < Math.Abs(wantedDif.Y)) {
 				(wantedDif.X, wantedDif.Y) = (Math.Abs(wantedDif.Y) * Math.Sign(wantedDif.X), Math.Abs(wantedDif.X) * Math.Sign(wantedDif.Y));
 			}
+			wantedDif.X = -Math.Abs(wantedDif.X);
 			moveToPosition(player.GlobalPosition + wantedDif);
 		}
 		if (!animatedSprite2D.IsPlaying()) {

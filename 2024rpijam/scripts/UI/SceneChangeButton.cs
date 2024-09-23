@@ -3,11 +3,16 @@ using System;
 
 public partial class SceneChangeButton : Button
 {
-	//When called by button makes a copy of original untocuhed script and uses that
-	//And so you need to pass in scene info through button
-	public void buttonPressed(string stg, int level=-1) {
-		GetTree().ChangeSceneToPacked(ResourceLoader.Load<PackedScene>(stg));
+	[Export]
+	public string scenePath = "";
+	[Export]
+	public int level = -1;
+
+	public override void _EnterTree() => Pressed += OnButtonPressed;
+    public override void _ExitTree() => Pressed -= OnButtonPressed;
+    private void OnButtonPressed() {
+		GetTree().ChangeSceneToFile(scenePath);
 		if(level > -1)
-			((GlobalData)(GetTree().Root.GetNode("GlobalData"))).currentLevel = level;
+			GetTree().Root.GetNode<GlobalData>("GlobalData").currentLevel = level;
 	}
 }
