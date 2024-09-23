@@ -101,17 +101,15 @@ public partial class Player : CharacterBody2D {
 		}
 
 		//Handle Dash
-		if(((GlobalData)(GetTree().Root.GetNode("GlobalData"))).currentLevel != 4) {
-			if(Input.IsActionJustPressed("dash") && canDash) {
-				/* ---- animation ---- */
-				if(animationPriority["Dash"] > animationPriority[wantedAnimation])
-					wantedAnimation = "Dash";
-				/* ------------------- */
-				velocity.X += rightFacing ? dashSpeed : -dashSpeed;
-				dashCoolTimer.Start(0.01f);
-				canDash = false;
-				addIFrames(0.5f);
-			}
+		if(Input.IsActionJustPressed("dash") && canDash) {
+			/* ---- animation ---- */
+			if(animationPriority["Dash"] > animationPriority[wantedAnimation])
+				wantedAnimation = "Dash";
+			/* ------------------- */
+			velocity.X += rightFacing ? dashSpeed : -dashSpeed;
+			dashCoolTimer.Start(0.01f);
+			canDash = false;
+			addIFrames(0.5f);
 		}
 
 		// Add the gravity and friction

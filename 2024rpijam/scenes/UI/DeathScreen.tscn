@@ -32,10 +32,10 @@ text = "YOU DIED"
 
 [node name="Button3" type="Button" parent="."]
 layout_mode = 0
-offset_left = 614.0
-offset_top = 380.0
-offset_right = 914.0
-offset_bottom = 455.0
+offset_left = 626.0
+offset_top = 1362.0
+offset_right = 926.0
+offset_bottom = 1437.0
 scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 36
 text = "Restart Level"
@@ -44,9 +44,9 @@ script = ExtResource("2_sidgw")
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 614.0
-offset_top = 608.0
+offset_top = 472.0
 offset_right = 914.0
-offset_bottom = 683.0
+offset_bottom = 547.0
 scale = Vector2(2, 2)
 theme_override_font_sizes/font_size = 36
 text = "Level Select"
