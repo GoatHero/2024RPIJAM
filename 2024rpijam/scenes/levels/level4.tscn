@@ -43,36 +43,12 @@ rotation = 3.4457
 position = Vector2(-2858, -280)
 rotation = -1.5708
 
-[node name="Laser2" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-637, -1664)
-rotation = 1.5708
-
-[node name="Laser3" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-698, -1664)
-rotation = 1.5708
-
-[node name="Laser4" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-575, -1664)
-rotation = 1.5708
-
 [node name="Spike" parent="World" instance=ExtResource("4_5d5c8")]
 position = Vector2(292, -3390)
 
 [node name="Laser5" parent="World" instance=ExtResource("3_n7t44")]
 position = Vector2(-2818, -3264)
 rotation = 1.5708
-
-[node name="Laser6" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-636, -975)
-rotation = -1.5708
-
-[node name="Laser7" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-697, -975)
-rotation = -1.5708
-
-[node name="Laser8" parent="World" instance=ExtResource("3_n7t44")]
-position = Vector2(-574, -975)
-rotation = -1.5708
 
 [node name="Spike2" parent="World" instance=ExtResource("4_5d5c8")]
 position = Vector2(-47, -3391)
@@ -109,6 +85,8 @@ times = [5.0, 5.0, 5.0]
 
 [node name="Area2D" type="Area2D" parent="LineTriggers"]
 position = Vector2(-2570.99, -236.08)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LineTriggers/Area2D"]
 position = Vector2(-43.5483, 37.0798)
@@ -116,6 +94,8 @@ shape = SubResource("RectangleShape2D_3vgix")
 
 [node name="Area2D2" type="Area2D" parent="LineTriggers"]
 position = Vector2(-17, -222)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LineTriggers/Area2D2"]
 position = Vector2(15, -80)
@@ -123,6 +103,8 @@ shape = SubResource("RectangleShape2D_h7dto")
 
 [node name="Area2D3" type="Area2D" parent="LineTriggers"]
 position = Vector2(-1898.99, -1575.03)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LineTriggers/Area2D3"]
 position = Vector2(98.4902, 212.534)
